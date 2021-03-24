@@ -1,2 +1,2 @@
 # School-catalogue-app
-A schhol catalogue type of app created for my EAP university course
+A school catalogue type of app created for my EAP university course
