@@ -1,16 +1,18 @@
+package Clasa_sala;
+
+import Clasa_profesor.Profesor;
+
 import java.util.List;
 import java.util.Vector;
 
 public class Sala {
     private String nume_sala;
     private Vector<Profesor> lista_profesori;
-    private Integer nr_loc;
-    private List<String> materiale;
+    private Vector<String> materiale;
 
-    public Sala(String nume_sala, Vector<Profesor> lista_profesori, Integer nr_loc, List<String> materiale) {
+    public Sala(String nume_sala, Vector<Profesor> lista_profesori, Integer nr_loc, Vector<String> materiale) {
         this.nume_sala = nume_sala;
         this.lista_profesori = lista_profesori;
-        this.nr_loc = nr_loc;
         this.materiale = materiale;
     }
 
@@ -30,19 +32,16 @@ public class Sala {
         this.lista_profesori = lista_profesori;
     }
 
-    public Integer getNr_loc() {
-        return nr_loc;
-    }
-
-    public void setNr_loc(Integer nr_loc) {
-        this.nr_loc = nr_loc;
-    }
-
     public List<String> getMateriale() {
         return materiale;
     }
 
-    public void setMateriale(List<String> materiale) {
+    public void setMateriale(Vector<String> materiale) {
         this.materiale = materiale;
+    }
+
+    @Override
+    public String toString(){
+        return "Sala: "+nume_sala+"\n Profesori ce predau in aceasta sala: "+lista_profesori+"\n Materiale de care dispune sala: "+materiale;
     }
 }

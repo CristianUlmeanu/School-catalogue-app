@@ -1,6 +1,11 @@
+package Clasa_student;
+
+import Clasa_disciplina.Disciplina;
+import Clasa_persoana.Persoana;
+
 import java.util.Vector;
 
-public class Student extends Persoana{
+public class Student extends Persoana {
 
     private String nr_matricol;
     private Integer an;
@@ -35,5 +40,10 @@ public class Student extends Persoana{
 
     public void setLista_discipline(Vector<Disciplina> lista_discipline) {
         this.lista_discipline = lista_discipline;
+    }
+
+    @Override
+    public String toString(){
+        return "CNP: "+cnp+"\n Nume: "+nume+" "+prenume+"   Varsta: "+varsta+"\n Numarul de inmatriculare: "+nr_matricol+"\n An: "+an+"\n Disciplinele la care a participat: "+lista_discipline;
     }
 }
