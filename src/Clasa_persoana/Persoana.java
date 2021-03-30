@@ -1,10 +1,12 @@
+package Clasa_persoana;
+
 public class Persoana {
 
     protected String cnp;
     protected String nume;
     protected String prenume;
-    protected Integer varsta;
-    public Persoana(String cnp, String nume, String prenume, Integer varsta) {
+    protected int varsta;
+    public Persoana(String cnp, String nume, String prenume, int varsta) {
         this.cnp = cnp;
         this.nume= nume;
         this.prenume=prenume;
@@ -23,7 +25,7 @@ public class Persoana {
         return prenume;
     }
 
-    public Integer getVarsta() {
+    public int getVarsta() {
         return varsta;
     }
 
@@ -39,8 +41,12 @@ public class Persoana {
         this.prenume = prenume;
     }
 
-    public void setVarsta(Integer varsta) {
+    public void setVarsta(int varsta) {
         this.varsta = varsta;
     }
 
+    @Override
+    public String toString(){
+        return "CNP: "+cnp+"\n Nume: "+nume+" "+prenume+"   Varsta: "+varsta;
+    }
 }

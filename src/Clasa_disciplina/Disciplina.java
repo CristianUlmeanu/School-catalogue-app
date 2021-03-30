@@ -1,10 +1,17 @@
-public class Disciplina {
+package Clasa_disciplina;
+
+import Clasa_domeniu.Domeniu;
+
+import java.util.Vector;
+
+public class Disciplina extends Domeniu {
 
     private String nume_materie;
     private Integer nr_credite_max;
-    private Float nota;
+    private Vector<Float> nota;
 
-    public Disciplina(String nume_materie, Integer nr_credite_max, Float nota) {
+    public Disciplina(String nume_domeniu, int ani_studii, String nume_materie, Integer nr_credite_max, Vector<Float> nota) {
+        super(nume_domeniu, ani_studii);
         this.nume_materie = nume_materie;
         this.nr_credite_max = nr_credite_max;
         this.nota = nota;
@@ -26,11 +33,17 @@ public class Disciplina {
         this.nr_credite_max = nr_credite_max;
     }
 
-    public Float getNota() {
+    public Vector<Float> getNota() {
         return nota;
     }
 
-    public void setNota(Float nota) {
+    public void setNota(Vector<Float> nota) {
         this.nota = nota;
     }
+
+    @Override
+    public String toString(){
+        return "Domeniul "+nume_domeniu+" , materia "+nume_materie+"\nNumarul de credite posibile: "+nr_credite_max+"\n Note:"+nota;
+    }
+
 }

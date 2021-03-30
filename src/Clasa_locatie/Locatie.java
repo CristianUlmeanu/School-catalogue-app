@@ -1,3 +1,5 @@
+package Clasa_locatie;
+
 public class Locatie {
     protected String tara;
     protected String judet;
@@ -51,5 +53,9 @@ public class Locatie {
 
     public void setNumar(String numar) {
         this.numar = numar;
+    }
+    @Override
+    public String toString(){
+        return "Tara: "+this.tara+"\nJudet: "+this.judet+", Localitatea: "+localitate+"\nStrada: "+strada+", "+numar;
     }
 }
