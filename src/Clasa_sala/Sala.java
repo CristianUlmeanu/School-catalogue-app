@@ -10,7 +10,7 @@ public class Sala {
     private Vector<Profesor> lista_profesori;
     private Vector<String> materiale;
 
-    public Sala(String nume_sala, Vector<Profesor> lista_profesori, Integer nr_loc, Vector<String> materiale) {
+    public Sala(String nume_sala, Vector<Profesor> lista_profesori, Vector<String> materiale) {
         this.nume_sala = nume_sala;
         this.lista_profesori = lista_profesori;
         this.materiale = materiale;

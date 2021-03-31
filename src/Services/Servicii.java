@@ -6,6 +6,10 @@ import Clasa_domeniu.Domeniu;
 import Clasa_locatie.Locatie;
 import Clasa_persoana.Persoana;
 import Clasa_profesor.Profesor;
+import Clasa_sala.Sala;
+import Clasa_scoala.Scoala;
+import Clasa_student.Student;
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.ls.LSInput;
 
 import java.sql.SQLOutput;
@@ -15,7 +19,7 @@ import java.util.Vector;
 
 public class Servicii
 {
-    public static Locatie add_location()
+    public static Locatie Adaugare_locatie()
     {
         Scanner scanner=new Scanner(System.in);
         System.out.println("Adauga tara: ");
@@ -111,7 +115,7 @@ public class Servicii
         Vector <Float> note=new Vector<Float>();
         for(int i=1;i<=nr_note;i++) {
             System.out.println("Adauga nota obtinuta");
-            float nota= scanner.nextFloat();
+            Float nota= scanner.nextFloat();
             note.add(nota);
         }
         Disciplina disciplina=new Disciplina(domeniu.getNume_domeniu(), domeniu.getAni_studii(), mat,credite,note);
@@ -135,7 +139,7 @@ public class Servicii
         x.setAni_studii(ani);
         System.out.println("Modifica numele materiei in: ");
         String mat;
-        mat= scanner.nextLine();
+        mat= scanner.next();
         x.setNume_materie(mat);
         System.out.println("Modifica numarul maxim de credite disponibile in: ");
         int credite;
@@ -144,13 +148,13 @@ public class Servicii
         Vector<Float> note_modificate= new Vector<Float>();
         for(Float i: x.getNota()) {
             System.out.println("Modifica nota obtinuta in");
-            float nota= scanner.nextFloat();
+            Float nota= scanner.nextFloat();
             note_modificate.add(nota);
         }
         x.setNota(note_modificate);
         return x;
     }
-    public static Persoana Adagaure_persona(){
+    public static Persoana Adaugare_persona(){
         Scanner scanner=new Scanner(System.in);
         System.out.println("Adauga CNPul persoanei:");
         String CNP=scanner.nextLine();
@@ -187,7 +191,7 @@ public class Servicii
     }
     public static Profesor Adaugare_profesor(){
         Scanner scanner=new Scanner(System.in);
-        Persoana persoana_aux=Adagaure_persona();
+        Persoana persoana_aux=Adaugare_persona();
         System.out.println("Adauga gradul profesorului: ");
         String grad=scanner.nextLine();
         System.out.println("Adauga anii de experienta a profesorului");
@@ -223,9 +227,397 @@ public class Servicii
         x.setAni_experienta(ani);
         return x;
     }
-
-
-
-
-
+    public static Sala Adaugare_sala(){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Adauga numele salii: ");
+        String sala_nume=scanner.nextLine();
+        System.out.println("Cati profesori lucreaza in sala respectiva? ");
+        int nr_profi= scanner.nextInt();
+        Vector<Profesor> lista_prof= new Vector<Profesor>();
+        System.out.println("Adauga profesorii ce lucreaza in sala respectiva: ");
+        for (int i=1;i<=nr_profi;i++)
+        lista_prof.add(Adaugare_profesor());
+        System.out.println("De cate materiale dispune sala? ");
+        int nr_echip= scanner.nextInt();
+        Vector<String> lista_mat=new Vector<String>();
+        System.out.println("Adauga materialele din sala respectiva: ");
+        for (int i=1;i<=nr_echip;i++)
+            lista_mat.add(scanner.nextLine());
+        Sala sala=new Sala(sala_nume,lista_prof,lista_mat);
+        return sala;
+    }
+    public static void Afisare_sala(Sala x){
+        x.toString();
+    }
+    public static void Stergere_sala(Vector<Sala> x,int y){
+        x.remove(y);
+    }
+    public static Sala Modificare_sala(Sala x){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Modifica numele salii: ");
+        String sala_nume=scanner.nextLine();
+        x.setNume_sala(sala_nume);
+        System.out.println("Cati profesori lucreaza in sala respectiva? ");
+        int nr_profi= scanner.nextInt();
+        Vector<Profesor> lista_prof= new Vector<Profesor>();
+        System.out.println("Modifica profesorii ce lucreaza in sala respectiva: ");
+        for (int i=1;i<=nr_profi;i++)
+            lista_prof.add(Adaugare_profesor());
+        x.setLista_profesori(lista_prof);
+        System.out.println("De cate materiale dispune sala? ");
+        int nr_echip= scanner.nextInt();
+        Vector<String> lista_mat=new Vector<String>();
+        System.out.println("Modifica materialele din sala respectiva: ");
+        for (int i=1;i<=nr_echip;i++)
+            lista_mat.add(scanner.nextLine());
+        x.setMateriale(lista_mat);
+        return x;
+    }
+    public static Scoala Adaugare_scoala(){
+        Scanner scanner=new Scanner(System.in);
+        Locatie loc=Adaugare_locatie();
+        System.out.println("Adauga numele scolii: ");
+        String scoala_nume=scanner.nextLine();
+        System.out.println("Adauga numarul de locuri disponibile ale scolii");
+        int nr_loc= scanner.nextInt();
+        System.out.println("Ce tip de admitere are scoala? (Examen / Dosar / Interviu)");
+        String admitere=scanner.nextLine();
+        System.out.println("Cate domenii are scoala? ");
+        int nr_domenii= scanner.nextInt();
+        Vector<Domeniu> lista_domeniu= new Vector<Domeniu>();
+        System.out.println("Adauga domeniile care sunt: ");
+        for (int i=1;i<=nr_domenii;i++)
+            lista_domeniu.add(Adaugare_domeniu());
+        System.out.println("De cate sali dispune scoala? ");
+        int nr_sali= scanner.nextInt();
+        Vector<Sala> lista_sali=new Vector<Sala>();
+        System.out.println("Adauga salile din scoala respectiva: ");
+        for (int i=1;i<=nr_sali;i++)
+            lista_sali.add(Adaugare_sala());
+        System.out.println("Cate persoane fac parte din scoala? ");
+        int nr_pers= scanner.nextInt();
+        Vector<Persoana> lista_pers=new Vector<Persoana>();
+        System.out.println("Adauga persoanele ce fac parte din scoala");
+        for (int i=1;i<=nr_pers;i++)
+            lista_pers.add(Adaugare_persona());
+        Scoala scoala=new Scoala(loc.getTara(),loc.getJudet(),loc.getLocalitate(),loc.getStrada(),loc.getNumar(),scoala_nume,nr_loc,lista_domeniu,admitere,lista_pers,lista_sali);
+        return scoala;
+    }
+    public static void Afisare_scoala(Scoala x){
+        x.toString();
+    }
+    public static void Stergere_scoala(Vector<Scoala> x,int y){
+        x.remove(y);
+    }
+    public static Scoala Modificare_scoala(Scoala x){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Modifica numele scolii: ");
+        String scoala_nume=scanner.nextLine();
+        x.setNume_scoala(scoala_nume);
+        System.out.println("Modifica numarul de locuri disponibile ale scolii");
+        int nr_loc= scanner.nextInt();
+        x.setNr_locuri(nr_loc);
+        System.out.println("Ce tip de admitere are scoala? (Examen / Dosar / Interviu)");
+        String admitere=scanner.nextLine();
+        x.setTip_admitere(admitere);
+        System.out.println("Cate domenii are scoala? ");
+        int nr_domenii= scanner.nextInt();
+        Vector<Domeniu> lista_domeniu= new Vector<Domeniu>();
+        System.out.println("Modifica domeniile care sunt: ");
+        for (int i=1;i<=nr_domenii;i++)
+            lista_domeniu.add(Adaugare_domeniu());
+        x.setLista_domenii(lista_domeniu);
+        System.out.println("De cate sali dispune scoala? ");
+        int nr_sali= scanner.nextInt();
+        Vector<Sala> lista_sali=new Vector<Sala>();
+        System.out.println("Modifica salile din scoala respectiva: ");
+        for (int i=1;i<=nr_sali;i++)
+            lista_sali.add(Adaugare_sala());
+        x.setLista_sali(lista_sali);
+        System.out.println("Cate persoane fac parte din scoala? ");
+        int nr_pers= scanner.nextInt();
+        Vector<Persoana> lista_pers=new Vector<Persoana>();
+        for (int i=1;i<=nr_pers;i++)
+            lista_pers.add(Adaugare_persona());
+        x.setLista_persoane(lista_pers);
+        return x;
+    }
+    public static Student Adaugare_student(){
+        Scanner scanner=new Scanner(System.in);
+        Persoana pers=Adaugare_persona();
+        System.out.println("Adauga numarul matricol al studentului: ");
+        String matricol=scanner.nextLine();
+        System.out.println("Adauga in ce an se afla plesoana: ");
+        int an=scanner.nextInt();
+        System.out.printf("La cate discipline este inscris? ");
+        int nr_disc= scanner.nextInt();
+        Vector<Disciplina> lista_disc=new Vector<Disciplina>();
+        System.out.println("Adauga disciplinele la care este inscris: ");
+        for(int i=1;i<=nr_disc;i++)
+            lista_disc.add(Adaugare_disciplina());
+        Student stud=new Student(pers.getCnp(), pers.getNume(), pers.getPrenume(), pers.getVarsta(),matricol,an,lista_disc);
+        return stud;
+    }
+    public static void Afisare_student(Student x){
+        x.toString();
+    }
+    public static void Stergere_student(Vector<Student> x,int y){
+        x.remove(y);
+    }
+    public static Student Modificare_student(Student x){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Modifica numarul matricol al studentului: ");
+        String matricol=scanner.nextLine();
+        x.setNr_matricol(matricol);
+        System.out.println("Modifica in ce an se afla plesoana: ");
+        int an=scanner.nextInt();
+        x.setAn(an);
+        System.out.printf("La cate discipline este inscris? ");
+        int nr_disc= scanner.nextInt();
+        Vector<Disciplina> lista_disc=new Vector<Disciplina>();
+        System.out.println("Modifica disciplinele la care este inscris: ");
+        for(int i=1;i<=nr_disc;i++)
+            lista_disc.add(Adaugare_disciplina());
+        x.setLista_discipline(lista_disc);
+        return x;
+    }
+    public static void Cautare_scoala(Vector<Scoala> x){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Alege tara dupa care vrei sa filtrezi cautarea: ");
+        String tara=scanner.nextLine();
+        String opt=scanner.nextLine();
+        System.out.printf("Doresti sa mai adaugi filtre cautarii? (Da/Nu)");
+        if(opt.equals("Da")) {
+            System.out.println("Alege dupa ce vrei sa filtrezi cautarea: (Judet / Localitate / Strada)");
+            String filtru1=scanner.nextLine();
+            switch (filtru1){
+                case "Judet":{
+                    System.out.println("Alege dupa ce judet doresti sa filtrezi: ");
+                    String judet= scanner.nextLine();
+                    System.out.printf("Doresti sa mai adaugi filtre cautarii? (Da/Nu)");
+                    opt=scanner.nextLine();
+                    if(opt.equals("Da")){
+                        System.out.println("Alege dupa ce vrei sa filtrezi cautarea: (Localitate / Strada)");
+                        String filtru2=scanner.nextLine();
+                        switch (filtru2){
+                            case "Localitate":{
+                                System.out.println("Alege dupa ce localitate doresti sa filtrezi: ");
+                                String localitate= scanner.nextLine();
+                                System.out.printf("Doresti sa mai adaugi filtre cautarii? (Da/Nu)");
+                                opt=scanner.nextLine();
+                                if(opt.equals("Da")){
+                                    System.out.println("Alege dupa ce strada doresti sa filtrezi: ");
+                                    String strada=scanner.nextLine();
+                                    for (Scoala it:x){
+                                        if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()) & judet.equals(it.getJudet()))
+                                            Afisare_scoala(it);
+                                    }
+                                }
+                                else{
+                                    for (Scoala it:x) {
+                                        if (tara.equals(it.getTara()) & judet.equals(it.getJudet()) & localitate.equals(it.getLocalitate()))
+                                            Afisare_scoala(it);
+                                    }
+                                }
+                                break;
+                            }
+                            case "Strada":{
+                                System.out.println("Alege dupa ce strada doresti sa filtrezi: ");
+                                String strada= scanner.nextLine();
+                                System.out.printf("Doresti sa mai adaugi filtre cautarii? (Da/Nu)");
+                                opt=scanner.nextLine();
+                                if(opt.equals("Da")){
+                                    System.out.println("Alege dupa ce localitate doresti sa filtrezi: ");
+                                    String localitate=scanner.nextLine();
+                                    for (Scoala it:x){
+                                        if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()) & judet.equals(it.getJudet()))
+                                            Afisare_scoala(it);
+                                    }
+                                }
+                                else{
+                                    for (Scoala it:x){
+                                        if(tara.equals(it.getTara())&judet.equals(it.getJudet())&strada.equals(it.getStrada()))
+                                            Afisare_scoala(it);
+                                    }
+                                }
+                                break;
+                            }
+                            default:
+                                System.out.println("Varianta aleasa este invalida te rog alege dintre Localitate sau Strada.");
+                                break;
+                        }
+                    }
+                    else{
+                        for (Scoala it:x){
+                            if (tara.equals(it.getTara())&judet.equals(it.getJudet()))
+                                Afisare_scoala(it);
+                        }
+                    }
+                    break;
+                }
+                case "Localitate":{
+                    System.out.println("Alege dupa ce localitate doresti sa filtrezi: ");
+                    String localitate= scanner.nextLine();
+                    System.out.printf("Doresti sa mai adaugi filtre cautarii? (Da/Nu)");
+                    opt=scanner.nextLine();
+                    if(opt.equals("Da")){
+                        System.out.println("Alege dupa ce vrei sa filtrezi cautarea: (Judet / Strada)");
+                        String filtru2=scanner.nextLine();
+                        switch (filtru2){
+                            case "Judet":{
+                                System.out.println("Alege dupa ce localitate doresti sa filtrezi: ");
+                                String judet= scanner.nextLine();
+                                System.out.printf("Doresti sa mai adaugi filtre cautarii? (Da/Nu)");
+                                opt=scanner.nextLine();
+                                if(opt.equals("Da")){
+                                    System.out.println("Alege dupa ce strada doresti sa filtrezi: ");
+                                    String strada=scanner.nextLine();
+                                    for(Scoala it:x){
+                                        if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()) & judet.equals(it.getJudet()))
+                                            Afisare_scoala(it);
+                                    }
+                                }
+                                else{
+                                    for(Scoala it:x){
+                                        if(tara.equals(it.getTara())&localitate.equals(it.getLocalitate())&judet.equals(it.getStrada()))
+                                            Afisare_scoala(it);
+                                    }
+                                }
+                                break;
+                            }
+                            case "Strada":{
+                                System.out.println("Alege dupa ce strada doresti sa filtrezi: ");
+                                String strada= scanner.nextLine();
+                                System.out.printf("Doresti sa mai adaugi filtre cautarii? (Da/Nu)");
+                                opt=scanner.nextLine();
+                                if(opt.equals("Da")){
+                                    System.out.println("Alege dupa ce judet doresti sa filtrezi: ");
+                                    String judet=scanner.nextLine();
+                                    for(Scoala it:x){
+                                        if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()) & judet.equals(it.getJudet()))
+                                            Afisare_scoala(it);
+                                    }
+                                }
+                                else {
+                                    for(Scoala it:x){
+                                        if(tara.equals(it.getTara())&localitate.equals(it.getLocalitate())&strada.equals(it.getStrada()))
+                                            Afisare_scoala(it);
+                                    }
+                                }
+                                break;
+                            }
+                            default:
+                                System.out.println("Varianta aleasa este invalida te rog alege dintre Judet sau Strada.");
+                                break;
+                        }
+                    }
+                    else {
+                        for(Scoala it:x){
+                            if(tara.equals(it.getTara())&localitate.equals(it.getLocalitate()))
+                                Afisare_scoala(it);
+                        }
+                    }
+                    break;
+                }
+                case "Strada":{
+                    System.out.println("Alege dupa ce strada doresti sa filtrezi: ");
+                    String strada= scanner.nextLine();
+                    System.out.printf("Doresti sa mai adaugi filtre cautarii? (Da/Nu)");
+                    opt=scanner.nextLine();
+                    if(opt.equals("Da")){
+                        System.out.println("Alege dupa ce vrei sa filtrezi cautarea: (Judet / Localitate)");
+                        String filtru2=scanner.nextLine();
+                        switch (filtru2){
+                            case "Judet":{
+                                System.out.println("Alege dupa ce localitate doresti sa filtrezi: ");
+                                String judet= scanner.nextLine();
+                                System.out.printf("Doresti sa mai adaugi filtre cautarii? (Da/Nu)");
+                                opt=scanner.nextLine();
+                                if(opt.equals("Da")){
+                                    System.out.println("Alege dupa ce localitate doresti sa filtrezi: ");
+                                    String localitate=scanner.nextLine();
+                                    for (Scoala it:x){
+                                        if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()) & judet.equals(it.getJudet()))
+                                            Afisare_scoala(it);
+                                    }
+                                }
+                                else{
+                                    for (Scoala it:x){
+                                        if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & judet.equals(it.getJudet()))
+                                            Afisare_scoala(it);
+                                    }
+                                }
+                                break;
+                            }
+                            case "Localitate":{
+                                System.out.println("Alege dupa ce localitate doresti sa filtrezi: ");
+                                String localitate= scanner.nextLine();
+                                System.out.printf("Doresti sa mai adaugi filtre cautarii? (Da/Nu)");
+                                opt=scanner.nextLine();
+                                if(opt.equals("Da")){
+                                    System.out.println("Alege dupa ce judet doresti sa filtrezi: ");
+                                    String judet=scanner.nextLine();
+                                    for (Scoala it:x) {
+                                        if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()) & judet.equals(it.getJudet()))
+                                            Afisare_scoala(it);
+                                    }
+                                }
+                                else {
+                                    for (Scoala it : x) {
+                                        if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()))
+                                            Afisare_scoala(it);
+                                    }
+                                }
+                                break;
+                            }
+                            default:
+                                System.out.println("Varianta aleasa este invalida te rog alege dintre Judet sau Localitate.");
+                                break;
+                        }
+                    }
+                    else{
+                        for (Scoala it:x)
+                        {
+                            if(tara.equals(it.getTara())&strada.equals(it.getStrada()))
+                                Afisare_scoala(it);
+                        }
+                    }
+                    break;
+                }
+                default:
+                    System.out.println("Varianta aleasa este invalida te rog alege dintre Judet / Localitate / Strada.");
+                    break;
+            }
+        }
+        else{
+            for(Scoala it:x) {
+                if(tara.equals(it.getTara()))
+                    Afisare_scoala(it);
+            }
+        }
+    }
+    public static void Cautare_specializare(Vector<Scoala> x){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("In cadrul a catei scoli doresti sa ii aflii domeniile disponibile: ");
+        int nr_scoala=scanner.nextInt();
+        int index=1;
+        for(Scoala it:x){
+            if(index==nr_scoala)
+                System.out.println("Disciplinele scolii: "+it.getNume_scoala()+" sunt "+it.getLista_domenii());
+        }
+    }
+    public static Float Calcul_medie(Disciplina x){
+        float medie, suma=0;
+        for (Float it:x.getNota()){
+            suma=suma+it;
+        }
+        medie=suma/x.getNota().size();
+        return medie;
+    }
+    public static int Calcul_nr_credite(Disciplina x){
+        int nr_credite;
+        Float medie_materie=Calcul_medie(x);
+        nr_credite=(int)(x.getNr_credite_max()*medie_materie/10);
+        return nr_credite;
+    }
 }

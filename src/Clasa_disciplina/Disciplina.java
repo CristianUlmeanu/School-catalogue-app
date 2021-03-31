@@ -43,7 +43,7 @@ public class Disciplina extends Domeniu {
 
     @Override
     public String toString(){
-        return "Domeniul "+nume_domeniu+" , materia "+nume_materie+"\nNumarul de credite posibile: "+nr_credite_max+"\n Note:"+nota;
+        return "Domeniul "+nume_domeniu+" , materia "+nume_materie+"\nNumarul de credite posibile: "+nr_credite_max+"\nNote:"+nota;
     }
 
 }

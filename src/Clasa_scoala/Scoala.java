@@ -9,13 +9,13 @@ import java.util.Vector;
 
 public class Scoala extends Locatie {
     private String nume_scoala;
-    private Integer nr_locuri;
+    private int nr_locuri;
     private Vector<Domeniu> lista_domenii;
     private String tip_admitere;
     private Vector<Persoana> lista_persoane;
     private Vector<Sala> lista_sali;
 
-    public Scoala(String tara, String judet, String localitate, String strada, String numar, String nume_scoala, Integer nr_locuri, Vector<Domeniu> lista_domenii, String tip_admitere, Vector<Persoana> lista_persoane, Vector<Sala> lista_sali) {
+    public Scoala(String tara, String judet, String localitate, String strada, String numar, String nume_scoala, int nr_locuri, Vector<Domeniu> lista_domenii, String tip_admitere, Vector<Persoana> lista_persoane, Vector<Sala> lista_sali) {
         super(tara, judet, localitate, strada, numar);
         this.nume_scoala = nume_scoala;
         this.nr_locuri = nr_locuri;
@@ -33,11 +33,11 @@ public class Scoala extends Locatie {
         this.nume_scoala = nume_scoala;
     }
 
-    public Integer getNr_locuri() {
+    public int getNr_locuri() {
         return nr_locuri;
     }
 
-    public void setNr_locuri(Integer nr_locuri) {
+    public void setNr_locuri(int nr_locuri) {
         this.nr_locuri = nr_locuri;
     }
 

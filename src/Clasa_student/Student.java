@@ -8,10 +8,10 @@ import java.util.Vector;
 public class Student extends Persoana {
 
     private String nr_matricol;
-    private Integer an;
+    private int an;
     private Vector<Disciplina> lista_discipline;
 
-    public Student(String cnp, String nume, String prenume, Integer varsta, String nr_matricol, Integer an, Vector<Disciplina> lista_discipline) {
+    public Student(String cnp, String nume, String prenume, int varsta, String nr_matricol, int an, Vector<Disciplina> lista_discipline) {
         super(cnp, nume, prenume, varsta);
         this.nr_matricol = nr_matricol;
         this.an = an;
@@ -26,11 +26,11 @@ public class Student extends Persoana {
         this.nr_matricol = nr_matricol;
     }
 
-    public Integer getAn() {
+    public int getAn() {
         return an;
     }
 
-    public void setAn(Integer an) {
+    public void setAn(int an) {
         this.an = an;
     }
 
