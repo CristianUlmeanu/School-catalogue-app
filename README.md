@@ -1,7 +1,7 @@
 ### School-catalogue-app
 A school catalogue type of app created for my EAP university course
 
-##The structure of the project will be the following.
+## The structure of the project will be the following.
 
 I will implement the following classes:
 1. Locatie
@@ -17,7 +17,7 @@ I will implement the following classes:
 Also implemented auxialliary classes for services(Services), menu(Meniu) and main.
 The hierarchy might suffer changes. I might add new classes or modify them a little bit but primarly those are the main ones.
 
-##Methods implemented:
+## Methods implemented:
 I've implemented methods for adding, viewing, modifying and deleteing objects for each class. Later I will create a general method for adding, viewing that works as a whole for the entire hierarchy. I added methods
 -to show the schools from a certain location, 
 -to show the domains that a school has, 
