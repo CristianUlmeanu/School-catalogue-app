@@ -1,4 +1,4 @@
-### School-catalogue-app
+# School-catalogue-app
 A school catalogue type of app created for my EAP university course
 
 ## The structure of the project will be the following.
