@@ -1,21 +1,21 @@
 package Services;
 
-import Clasa_disciplina.Disciplina;
-import Clasa_domeniu.Domeniu;
-import Clasa_locatie.Locatie;
-import Clasa_persoana.Persoana;
-import Clasa_profesor.Profesor;
-import Clasa_sala.Sala;
-import Clasa_scoala.Scoala;
-import Clasa_student.Student;
+import InstitutiiScolare.Studii.Disciplina;
+import InstitutiiScolare.Studii.Domeniu;
+import InstitutiiScolare.Locatie;
+import Persoane.Persoana;
+import Persoane.Profesor;
+import InstitutiiScolare.Sala;
+import InstitutiiScolare.Scoala;
+import Persoane.Student;
 
-import java.util.Iterator;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.Vector;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner=new Scanner(System.in);
         Vector<Disciplina> discipline=new Vector<Disciplina>();
         Vector<Domeniu> domenii=new Vector<Domeniu>();
@@ -25,6 +25,9 @@ public class Main {
         Vector<Scoala> scoli=new Vector<Scoala>();
         Vector<Locatie> lista_locatii = new Vector<Locatie>();
         Vector<Student> studenti=new Vector<Student>();
+        Servicii serv=new Servicii();
+        serv.citireFisiere(discipline,domenii,lista_locatii,persoane);
+        System.out.println(persoane);
         Meniu meniu=new Meniu();
         Meniu.meniu(discipline,domenii,lista_locatii,persoane,profesor,sali,scoli,studenti);
     }

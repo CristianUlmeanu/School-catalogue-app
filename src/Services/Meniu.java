@@ -1,19 +1,23 @@
 package Services;
 
-import Clasa_disciplina.Disciplina;
-import Clasa_domeniu.Domeniu;
-import Clasa_locatie.Locatie;
-import Clasa_persoana.Persoana;
-import Clasa_profesor.Profesor;
-import Clasa_sala.Sala;
-import Clasa_scoala.Scoala;
-import Clasa_student.Student;
+import InstitutiiScolare.Studii.Disciplina;
+import InstitutiiScolare.Studii.Domeniu;
+import InstitutiiScolare.Locatie;
+import Persoane.Persoana;
+import Persoane.Profesor;
+import InstitutiiScolare.Sala;
+import InstitutiiScolare.Scoala;
+import Persoane.Student;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.Vector;
 
 public class Meniu {
-    public static void meniu(Vector<Disciplina>a, Vector<Domeniu>b, Vector<Locatie>c, Vector<Persoana>d, Vector<Profesor>e, Vector<Sala>f, Vector<Scoala>g,Vector<Student>h) {
+    public static void meniu(Vector<Disciplina>a, Vector<Domeniu>b, Vector<Locatie>c, Vector<Persoana>d, Vector<Profesor>e, Vector<Sala>f, Vector<Scoala>g,Vector<Student>h) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("1. Citire");
         System.out.println("\n2. Afisare");
@@ -25,7 +29,7 @@ public class Meniu {
         System.out.println("\n8. Calculare numar de credite");
         System.out.println("\n9. Iesire");
         int opt=0;
-        while (opt >= 0 & opt < 10) {
+        while (opt >= 0 & opt < 100) {
         System.out.println("\n_____________________________________________________\nAlege ce optiune doresti sa testezi: ");
         opt = scanner.nextInt();
             switch (opt) {
@@ -110,6 +114,10 @@ public class Meniu {
                             System.out.println("Alege o varianta din cele mentionate anterior.");
                             break;
                     }
+                    Date timestamp=new Date();
+                    SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    String timp = data.format(timestamp);
+                    Servicii.creareAudit("Citire",timp);
                 }
                 break;
                 case 2: {
@@ -162,6 +170,10 @@ public class Meniu {
                             break;
                         }
                     }
+                    Date timestamp=new Date();
+                    SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    String timp = data.format(timestamp);
+                    Servicii.creareAudit("Afisare",timp);
                 }
                 break;
                 case 3: {
@@ -222,6 +234,10 @@ public class Meniu {
                             break;
                         }
                     }
+                    Date timestamp=new Date();
+                    SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    String timp = data.format(timestamp);
+                    Servicii.creareAudit("Modificare",timp);
                 }
                 break;
                 case 4: {
@@ -282,34 +298,61 @@ public class Meniu {
                             break;
                         }
                     }
+                    Date timestamp=new Date();
+                    SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    String timp = data.format(timestamp);
+                    Servicii.creareAudit("Stergere",timp);
                 }
                 break;
                 case 5: {
                     Servicii.Cautare_scoala(g);
+                    Date timestamp=new Date();
+                    SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    String timp = data.format(timestamp);
+                    Servicii.creareAudit("Cautarea unei scoli",timp);
                 }
                 break;
                 case 6: {
                     Servicii.Cautare_specializare(g);
+                    Date timestamp=new Date();
+                    SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    String timp = data.format(timestamp);
+                    Servicii.creareAudit("Cautarea unei specializari",timp);
                 }
                 break;
                 case 7: {
                     System.out.println("Cui doresti sa aflii media");
                     int obiect=scanner.nextInt();
                     System.out.println(Servicii.Calcul_medie(a.get(obiect)));
+                    Date timestamp=new Date();
+                    SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    String timp = data.format(timestamp);
+                    Servicii.creareAudit("Calcularea unei medii",timp);
                 }
                 break;
                 case 8: {
                     System.out.println("Cui doresti sa aflii numarul de credite");
                     int obiect=scanner.nextInt();
                     System.out.println(Servicii.Calcul_nr_credite(a.get(obiect)));
+                    Date timestamp=new Date();
+                    SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    String timp = data.format(timestamp);
+                    Servicii.creareAudit("Calcularea unui numar de credite",timp);
                 }
                 break;
                 case 9: {
+                    FileWriter writer=new FileWriter("src/Services/Date/Audit.csv",false);
+                    writer.write("Metoda,Timestamp");
+                    writer.close();
                     System.exit(0);
                 }
                 break;
                 default:
                     System.out.println("Alege o varianta dintre 1 si 9 data viitoare.");
+                    Date timestamp=new Date();
+                    SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    String timp = data.format(timestamp);
+                    Servicii.creareAudit("Eroare de alegere actiune",timp);
                     break;
             }
         }
