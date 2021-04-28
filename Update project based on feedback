@@ -1,1 +1,7 @@
+1. Legat de pachetele pentru fiecare clasa in parte, am revizuit problema si am facut doar 3 pachete principale pentru clasele ce au lucruri comune
+-Servicii: pentru metode,meniu si main si pe langa acestea am adaugat un pachet secundar care are rol de stocare de date unde am adaugat toate CSVurile; 
+-InstitutiiScolare: pentru datele despre scoala la nivel fizic, adica locatia, scoala, salile si aici am un pachet secundar Studii: pentru ce se preda in cadrul scolilor discipline
+domeniu
+-Persoane: pentru gruparea de oameni din cadrul aplicatiei, persoana, student, profesor.
+
 
