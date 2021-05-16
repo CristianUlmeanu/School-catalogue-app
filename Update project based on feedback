@@ -7,4 +7,20 @@ Legat de pachetele pentru fiecare clasa in parte, am revizuit problema si am fac
 domeniu
 -Persoane: pentru gruparea de oameni din cadrul aplicatiei, persoana, student, profesor.
 
+#2
+Legat de cammelCase, am facut modificari tutoror denumirilor claselor sa fie de format cammelCase, cat si a metodelor. Totodata, am modificat si numele anumitor variabile deja create
+sa fie de format cammelCase. Iar pentru cele create ulterior am pastrat cammelCase format.
+
+#3
+Am rezolvat problema tuturor functiilor statice intelegand ca nu are rost sa fie statice in cazul meu asa ca am renuntat la tipul lor static si le-am refacut normal.
+
+#4
+Am modificat o colectie de tip Vector care nu este sortata intr-una sortata, aceasta find de tip HashMap pentru lista persoanelor. Am modificat din vector in hashmap pentru a avea
+lista de persoane sortata dupa nume.
+
+#5
+Tinand cont ca mi-ai zis ca nu am destule metode deoarece cea de afisare nu se ia in considerare si totodata lipsa punctajul pentru "sort"  am mai adaugat o metoda ce sorteaza
+notele care sunt obtinute in cadrul unei discipline pentru a o afisa. Astfel am ajuns la un numar de 8 metode unice (adaugare, stergere, modificare, cautare de scoala, cautarea
+unei specializari, calcularea mediei, calcularea numarului de credite si sortarea notelor de la cea mai mare la cea mai mica).
+
 
