@@ -17,8 +17,9 @@ import java.util.Scanner;
 import java.util.Vector;
 
 public class Meniu {
-    public static void meniu(Vector<Disciplina>a, Vector<Domeniu>b, Vector<Locatie>c, Vector<Persoana>d, Vector<Profesor>e, Vector<Sala>f, Vector<Scoala>g,Vector<Student>h) throws IOException {
+    public void meniu(Vector<Disciplina>a, Vector<Domeniu>b, Vector<Locatie>c, Vector<Persoana>d, Vector<Profesor>e, Vector<Sala>f, Vector<Scoala>g,Vector<Student>h) throws IOException {
         Scanner scanner = new Scanner(System.in);
+        Servicii serv=new Servicii();
         System.out.println("1. Citire");
         System.out.println("\n2. Afisare");
         System.out.println("\n3. Modificare");
@@ -44,7 +45,7 @@ public class Meniu {
                             System.out.println("Cate discipline aveti? ");
                             nr_discipline=scanner.nextInt();
                             for (int i=1;i<=nr_discipline;i++)
-                                a.add(Servicii.Adaugare_disciplina());
+                                a.add(serv.adaugareDisciplina());
                             break;
                         }
                         case "Domeniu":
@@ -53,7 +54,7 @@ public class Meniu {
                             System.out.println("Cate domenii aveti? ");
                             nr_domenii=scanner.nextInt();
                             for (int i=1;i<=nr_domenii;i++)
-                                b.add(Servicii.Adaugare_domeniu());
+                                b.add(serv.adaugareDomeniu());
                             break;
                         }
                         case "Locatie":
@@ -62,7 +63,7 @@ public class Meniu {
                             System.out.println("Cate locatii aveti? ");
                             nr_locatie=scanner.nextInt();
                             for (int i=1;i<=nr_locatie;i++)
-                                c.add(Servicii.Adaugare_locatie());
+                                c.add(serv.adaugareLocatie());
                             break;
                         }
                         case "Persoana":
@@ -71,7 +72,7 @@ public class Meniu {
                             System.out.println("Cate persoane aveti? ");
                             nr_persoane=scanner.nextInt();
                             for (int i=1;i<=nr_persoane;i++)
-                                d.add(Servicii.Adaugare_persona());
+                                d.add(serv.adaugarePersoana());
                             break;
                         }
                         case "Profesor":
@@ -80,7 +81,7 @@ public class Meniu {
                             System.out.println("Cate profesori aveti? ");
                             nr_profesori=scanner.nextInt();
                             for (int i=1;i<=nr_profesori;i++)
-                                e.add(Servicii.Adaugare_profesor());
+                                e.add(serv.adaugareProfesor());
                             break;
                         }
                         case "Sala":
@@ -89,7 +90,7 @@ public class Meniu {
                             System.out.println("Cate sali aveti? ");
                             nr_sali=scanner.nextInt();
                             for (int i=1;i<=nr_sali;i++)
-                                f.add(Servicii.Adaugare_sala());
+                                f.add(serv.adaugareSala());
                             break;
                         }
                         case "Scoala":
@@ -98,7 +99,7 @@ public class Meniu {
                             System.out.println("Cate scoli aveti? ");
                             nr_scoli=scanner.nextInt();
                             for (int i=1;i<=nr_scoli;i++)
-                                g.add(Servicii.Adaugare_scoala());
+                                g.add(serv.adaugareScoala());
                             break;
                         }
                         case "Student":
@@ -107,7 +108,7 @@ public class Meniu {
                             System.out.println("Cate studenti aveti? ");
                             nr_studenti=scanner.nextInt();
                             for (int i=1;i<=nr_studenti;i++)
-                                h.add(Servicii.Adaugare_student());
+                                h.add(serv.adaugareStudent());
                             break;
                         }
                         default:
@@ -117,7 +118,7 @@ public class Meniu {
                     Date timestamp=new Date();
                     SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     String timp = data.format(timestamp);
-                    Servicii.creareAudit("Citire",timp);
+                    serv.creareAudit("Citire",timp);
                 }
                 break;
                 case 2: {
@@ -127,42 +128,42 @@ public class Meniu {
                     switch (Clasa) {
                         case "Disciplina": {
                             for (Disciplina it : a)
-                                Servicii.Afisare_disciplina(it);
+                                serv.afisareDisciplina(it);
                             break;
                         }
                         case "Domeniu": {
                             for (Domeniu it : b)
-                                Servicii.Afisare_domeniu(it);
+                                serv.afisareDomeniu(it);
                             break;
                         }
                         case "Locatie": {
                             for (Locatie it : c)
-                                Servicii.Afisare_locatie(it);
+                                serv.afisareLocatie(it);
                             break;
                         }
                         case "Persoana": {
                             for (Persoana it : d)
-                                Servicii.Afisare_persoana(it);
+                                serv.afisarePersoana(it);
                             break;
                         }
                         case "Profesor": {
                             for (Profesor it : e)
-                                Servicii.Afisare_profesor(it);
+                                serv.afisareProfesor(it);
                             break;
                         }
                         case "Sala": {
                             for (Sala it : f)
-                                Servicii.Afisare_sala(it);
+                                serv.afisareSala(it);
                             break;
                         }
                         case "Scoala": {
                             for (Scoala it : g)
-                                Servicii.Afisare_scoala(it);
+                                serv.afisareScoala(it);
                             break;
                         }
                         case "Student": {
                             for (Student it : h)
-                                Servicii.Afisare_student(it);
+                                serv.afisareStudent(it);
                             break;
                         }
                         default: {
@@ -173,7 +174,7 @@ public class Meniu {
                     Date timestamp=new Date();
                     SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     String timp = data.format(timestamp);
-                    Servicii.creareAudit("Afisare",timp);
+                    serv.creareAudit("Afisare",timp);
                 }
                 break;
                 case 3: {
@@ -184,49 +185,49 @@ public class Meniu {
                         case "Disciplina": {
                             System.out.println("Al catalea obiect doresti sa modifici?");
                             int obiect = scanner.nextInt();
-                            Servicii.Modificare_disciplina(a.get(obiect));
+                            serv.modificareDisciplina(a.get(obiect));
                             break;
                         }
                         case "Domeniu": {
                             System.out.println("Al catalea obiect doresti sa modifici?");
                             int obiect = scanner.nextInt();
-                            Servicii.Modificare_domeniu(b.get(obiect));
+                            serv.modificareDomeniu(b.get(obiect));
                             break;
                         }
                         case "Locatie": {
                             System.out.println("Al catalea obiect doresti sa modifici?");
                             int obiect = scanner.nextInt();
-                            Servicii.Modificare_locatie(c.get(obiect));
+                            serv.modificareLocatie(c.get(obiect));
                             break;
                         }
                         case "Persoana": {
                             System.out.println("Al catalea obiect doresti sa modifici?");
                             int obiect = scanner.nextInt();
-                            Servicii.Modificare_persoana(d.get(obiect));
+                            serv.modificarePersoana(d.get(obiect));
                             break;
                         }
                         case "Profesor": {
                             System.out.println("Al catalea obiect doresti sa modifici?");
                             int obiect = scanner.nextInt();
-                            Servicii.Modificare_profesor(e.get(obiect));
+                            serv.modificarePersoana(e.get(obiect));
                             break;
                         }
                         case "Sala": {
                             System.out.println("Al catalea obiect doresti sa modifici?");
                             int obiect = scanner.nextInt();
-                            Servicii.Modificare_sala(f.get(obiect));
+                            serv.modificareSala(f.get(obiect));
                             break;
                         }
                         case "Scoala": {
                             System.out.println("Al catalea obiect doresti sa modifici?");
                             int obiect = scanner.nextInt();
-                            Servicii.Modificare_scoala(g.get(obiect));
+                            serv.modificareScoala(g.get(obiect));
                             break;
                         }
                         case "Student": {
                             System.out.println("Al catalea obiect doresti sa modifici?");
                             int obiect = scanner.nextInt();
-                            Servicii.Modificare_student(h.get(obiect));
+                            serv.modificareStudent(h.get(obiect));
                             break;
                         }
                         default: {
@@ -237,7 +238,7 @@ public class Meniu {
                     Date timestamp=new Date();
                     SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     String timp = data.format(timestamp);
-                    Servicii.creareAudit("Modificare",timp);
+                    serv.creareAudit("Modificare",timp);
                 }
                 break;
                 case 4: {
@@ -248,49 +249,49 @@ public class Meniu {
                         case "Disciplina": {
                             System.out.println("Al catalea obiect doresti sa stergi?");
                             int obiect = scanner.nextInt();
-                            Servicii.Stergere_disciplina(a,obiect);
+                            serv.stergereDisciplina(a,obiect);
                             break;
                         }
                         case "Domeniu": {
                             System.out.println("Al catalea obiect doresti sa stergi?");
                             int obiect = scanner.nextInt();
-                            Servicii.Stergere_domeniu(b,obiect);
+                            serv.stergereDomeniu(b,obiect);
                             break;
                         }
                         case "Locatie": {
                             System.out.println("Al catalea obiect doresti sa stergi?");
                             int obiect = scanner.nextInt();
-                            Servicii.Stergere_locatie(c,obiect);
+                            serv.stergereLocatie(c,obiect);
                             break;
                         }
                         case "Persoana": {
                             System.out.println("Al catalea obiect doresti sa stergi?");
                             int obiect = scanner.nextInt();
-                            Servicii.Stergere_persoana(d,obiect);
+                            serv.stergerePersoana(d,obiect);
                             break;
                         }
                         case "Profesor": {
                             System.out.println("Al catalea obiect doresti sa stergi?");
                             int obiect = scanner.nextInt();
-                            Servicii.Stergere_profesor(e,obiect);
+                            serv.stergereProfesor(e,obiect);
                             break;
                         }
                         case "Sala": {
                             System.out.println("Al catalea obiect doresti sa stergi?");
                             int obiect = scanner.nextInt();
-                            Servicii.Stergere_sala(f,obiect);
+                            serv.stergereSala(f,obiect);
                             break;
                         }
                         case "Scoala": {
                             System.out.println("Al catalea obiect doresti sa stergi?");
                             int obiect = scanner.nextInt();
-                            Servicii.Stergere_scoala(g,obiect);
+                            serv.stergereScoala(g,obiect);
                             break;
                         }
                         case "Student": {
                             System.out.println("Al catalea obiect doresti sa stergi?");
                             int obiect = scanner.nextInt();
-                            Servicii.Stergere_student(h,obiect);
+                            serv.stergereStudent(h,obiect);
                             break;
                         }
                         default: {
@@ -301,46 +302,61 @@ public class Meniu {
                     Date timestamp=new Date();
                     SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     String timp = data.format(timestamp);
-                    Servicii.creareAudit("Stergere",timp);
+                    serv.creareAudit("Stergere",timp);
                 }
                 break;
                 case 5: {
-                    Servicii.Cautare_scoala(g);
+                    serv.cautareScoala(g);
                     Date timestamp=new Date();
                     SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     String timp = data.format(timestamp);
-                    Servicii.creareAudit("Cautarea unei scoli",timp);
+                    serv.creareAudit("Cautarea unei scoli",timp);
                 }
                 break;
                 case 6: {
-                    Servicii.Cautare_specializare(g);
+                    serv.cautareSpecializare(g);
                     Date timestamp=new Date();
                     SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     String timp = data.format(timestamp);
-                    Servicii.creareAudit("Cautarea unei specializari",timp);
+                    serv.creareAudit("Cautarea unei specializari",timp);
                 }
                 break;
                 case 7: {
                     System.out.println("Cui doresti sa aflii media");
-                    int obiect=scanner.nextInt();
-                    System.out.println(Servicii.Calcul_medie(a.get(obiect)));
+                    int persoana=scanner.nextInt();
+                    System.out.println("Carei discipline vrei sa aflii media");
+                    int disciplina=scanner.nextInt();
+                    System.out.println(serv.calculMedie(h.get(persoana).getListaDiscipline().get(disciplina)));
                     Date timestamp=new Date();
                     SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     String timp = data.format(timestamp);
-                    Servicii.creareAudit("Calcularea unei medii",timp);
+                    serv.creareAudit("Calcularea unei medii",timp);
                 }
                 break;
                 case 8: {
                     System.out.println("Cui doresti sa aflii numarul de credite");
-                    int obiect=scanner.nextInt();
-                    System.out.println(Servicii.Calcul_nr_credite(a.get(obiect)));
+                    int persoana=scanner.nextInt();
+                    System.out.println("Carei discipline vrei sa aflii numarul de credite");
+                    int disciplina=scanner.nextInt();
+                    System.out.println(serv.calculNrCredite(h.get(persoana).getListaDiscipline().get(disciplina)));
                     Date timestamp=new Date();
                     SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     String timp = data.format(timestamp);
-                    Servicii.creareAudit("Calcularea unui numar de credite",timp);
+                    serv.creareAudit("Calcularea unui numar de credite",timp);
                 }
                 break;
-                case 9: {
+                case 9:{
+                    System.out.println("Cui doresti sa aflii notele");
+                    int persoana=scanner.nextInt();
+                    System.out.println("Notele la ce disciplina doresti sa aflii");
+                    int disciplina=scanner.nextInt();
+                    System.out.println(serv.noteSortate(h.get(persoana).getListaDiscipline().get(disciplina)));
+                    Date timestamp=new Date();
+                    SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    String timp = data.format(timestamp);
+                    serv.creareAudit("Calcularea unui numar de credite",timp);
+                }
+                case 10: {
                     FileWriter writer=new FileWriter("src/Services/Date/Audit.csv",false);
                     writer.write("Metoda,Timestamp");
                     writer.close();
@@ -352,7 +368,7 @@ public class Meniu {
                     Date timestamp=new Date();
                     SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     String timp = data.format(timestamp);
-                    Servicii.creareAudit("Eroare de alegere actiune",timp);
+                    serv.creareAudit("Eroare de alegere actiune",timp);
                     break;
             }
         }

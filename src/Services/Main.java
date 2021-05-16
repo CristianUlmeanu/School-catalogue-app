@@ -15,7 +15,7 @@ import java.util.Vector;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public void main(String[] args) throws IOException {
         Scanner scanner=new Scanner(System.in);
         Vector<Disciplina> discipline=new Vector<Disciplina>();
         Vector<Domeniu> domenii=new Vector<Domeniu>();
@@ -29,7 +29,7 @@ public class Main {
         serv.citireFisiere(discipline,domenii,lista_locatii,persoane);
         System.out.println(persoane);
         Meniu meniu=new Meniu();
-        Meniu.meniu(discipline,domenii,lista_locatii,persoane,profesor,sali,scoli,studenti);
+        meniu.meniu(discipline,domenii,lista_locatii,persoane,profesor,sali,scoli,studenti);
     }
 
 
