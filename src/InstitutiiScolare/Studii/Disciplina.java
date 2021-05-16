@@ -4,14 +4,14 @@ import java.util.Vector;
 
 public class Disciplina extends Domeniu {
 
-    private String nume_materie;
-    private Integer nr_credite_max;
+    private String NumeMaterie;
+    private Integer NrCrediteMax;
     private Vector<Float> nota;
 
-    public Disciplina(String nume_domeniu, int ani_studii, String nume_materie, Integer nr_credite_max, Vector<Float> nota) {
+    public Disciplina(String nume_domeniu, int ani_studii, String NumeMaterie, Integer NrCrediteMax, Vector<Float> nota) {
         super(nume_domeniu, ani_studii);
-        this.nume_materie = nume_materie;
-        this.nr_credite_max = nr_credite_max;
+        this.NumeMaterie = NumeMaterie;
+        this.NrCrediteMax = NrCrediteMax;
         this.nota = nota;
     }
 
@@ -19,20 +19,20 @@ public class Disciplina extends Domeniu {
         super();
     }
 
-    public String getNume_materie() {
-        return nume_materie;
+    public String getNumeMaterie() {
+        return NumeMaterie;
     }
 
-    public void setNume_materie(String nume_materie) {
-        this.nume_materie = nume_materie;
+    public void setNumeMaterie(String NumeMaterie) {
+        this.NumeMaterie = NumeMaterie;
     }
 
-    public Integer getNr_credite_max() {
-        return nr_credite_max;
+    public Integer getNrCrediteMax() {
+        return NrCrediteMax;
     }
 
-    public void setNr_credite_max(Integer nr_credite_max) {
-        this.nr_credite_max = nr_credite_max;
+    public void setNrCrediteMax(Integer NrCrediteMax) {
+        this.NrCrediteMax = NrCrediteMax;
     }
 
     public Vector<Float> getNota() {
@@ -45,7 +45,7 @@ public class Disciplina extends Domeniu {
 
     @Override
     public String toString(){
-        return "Domeniul "+nume_domeniu+" , materia "+nume_materie+"\nNumarul de credite posibile: "+nr_credite_max+"\nNote:"+nota;
+        return "Domeniul "+NumeDomeniu+" , materia "+NumeMaterie+"\nNumarul de credite posibile: "+NrCrediteMax+"\nNote:"+nota;
     }
 
 }

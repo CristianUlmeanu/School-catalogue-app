@@ -14,11 +14,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.Vector;
+import java.util.*;
 
 public class Servicii {
-    public static Locatie Adaugare_locatie() {
+    public Locatie adaugareLocatie() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Adauga tara: ");
         String t;
@@ -39,15 +38,15 @@ public class Servicii {
         return locatie;
     }
 
-    public static void Afisare_locatie(Locatie x) {
+    public void afisareLocatie(Locatie x) {
         System.out.println(x.toString());
     }
 
-    public static void Stergere_locatie(Vector<Locatie> x, int y) {
+    public void stergereLocatie(Vector<Locatie> x, int y) {
         x.remove(y);
     }
 
-    public static Locatie Modificare_locatie(Locatie x) {
+    public Locatie modificareLocatie(Locatie x) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Modifica tara in: ");
         String t;
@@ -72,7 +71,7 @@ public class Servicii {
         return x;
     }
 
-    public static Domeniu Adaugare_domeniu() {
+    public Domeniu adaugareDomeniu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Adauga numele domeniului: ");
         String dom;
@@ -84,30 +83,30 @@ public class Servicii {
         return domeniu;
     }
 
-    public static void Afisare_domeniu(Domeniu x) {
+    public void afisareDomeniu(Domeniu x) {
         System.out.println(x.toString());
     }
 
-    public static void Stergere_domeniu(Vector<Domeniu> x, int y) {
+    public void stergereDomeniu(Vector<Domeniu> x, int y) {
         x.remove(y);
     }
 
-    public static Domeniu Modificare_domeniu(Domeniu x) {
+    public Domeniu modificareDomeniu(Domeniu x) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Modifica numele domeniului in: ");
         String dom;
         dom = scanner.nextLine();
-        x.setNume_domeniu(dom);
+        x.setNumeDomeniu(dom);
         System.out.println("Modifica numarul anilor de studii in: ");
         int ani;
         ani = scanner.nextInt();
-        x.setAni_studii(ani);
+        x.setAniStudii(ani);
         return x;
     }
 
-    public static Disciplina Adaugare_disciplina() {
+    public Disciplina adaugareDisciplina() {
         Scanner scanner = new Scanner(System.in);
-        Domeniu domeniu = Adaugare_domeniu();
+        Domeniu domeniu = adaugareDomeniu();
         System.out.println("Adauga numele materiei: ");
         String mat;
         mat = scanner.nextLine();
@@ -123,36 +122,36 @@ public class Servicii {
             Float nota = scanner.nextFloat();
             note.add(nota);
         }
-        Disciplina disciplina = new Disciplina(domeniu.getNume_domeniu(), domeniu.getAni_studii(), mat, credite, note);
+        Disciplina disciplina = new Disciplina(domeniu.getNumeDomeniu(), domeniu.getAniStudii(), mat, credite, note);
         return disciplina;
     }
 
-    public static void Afisare_disciplina(Disciplina x) {
+    public void afisareDisciplina(Disciplina x) {
         System.out.println(x.toString());
     }
 
-    public static void Stergere_disciplina(Vector<Disciplina> x, int y) {
+    public void stergereDisciplina(Vector<Disciplina> x, int y) {
         x.remove(y);
     }
 
-    public static Disciplina Modificare_disciplina(Disciplina x) {
+    public Disciplina modificareDisciplina(Disciplina x) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Modifica numele domeniului in: ");
         String dom;
         dom = scanner.nextLine();
-        x.setNume_domeniu(dom);
+        x.setNumeDomeniu(dom);
         System.out.println("Modifica numarul anilor de studii in: ");
         int ani;
         ani = scanner.nextInt();
-        x.setAni_studii(ani);
+        x.setAniStudii(ani);
         System.out.println("Modifica numele materiei in: ");
         String mat;
         mat = scanner.next();
-        x.setNume_materie(mat);
+        x.setNumeMaterie(mat);
         System.out.println("Modifica numarul maxim de credite disponibile in: ");
         int credite;
         credite = scanner.nextInt();
-        x.setNr_credite_max(credite);
+        x.setNrCrediteMax(credite);
         Vector<Float> note_modificate = new Vector<Float>();
         for (Float i : x.getNota()) {
             System.out.println("Modifica nota obtinuta in");
@@ -163,7 +162,7 @@ public class Servicii {
         return x;
     }
 
-    public static Persoana Adaugare_persona() {
+    public Persoana adaugarePersoana() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Adauga CNPul persoanei:");
         String CNP = scanner.nextLine();
@@ -177,15 +176,15 @@ public class Servicii {
         return persoana;
     }
 
-    public static void Afisare_persoana(Persoana x) {
+    public void afisarePersoana(Persoana x) {
         System.out.println(x.toString());
     }
 
-    public static void Stergere_persoana(Vector<Persoana> x, int y) {
+    public void stergerePersoana(Vector<Persoana> x, int y) {
         x.remove(y);
     }
 
-    public static Persoana Modificare_persoana(Persoana x) {
+    public Persoana modificarePersoana(Persoana x) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Modifica CNPul persoanei in:");
         String CNP = scanner.nextLine();
@@ -202,9 +201,9 @@ public class Servicii {
         return x;
     }
 
-    public static Profesor Adaugare_profesor() {
+    public Profesor adaugareProfesor() {
         Scanner scanner = new Scanner(System.in);
-        Persoana persoana_aux = Adaugare_persona();
+        Persoana persoana_aux = adaugarePersoana();
         System.out.println("Adauga gradul profesorului: ");
         String grad = scanner.nextLine();
         System.out.println("Adauga anii de experienta a profesorului");
@@ -213,14 +212,14 @@ public class Servicii {
         return profesor;
     }
 
-    public static void Afisare_profesor(Profesor x) {
+    public void afisareProfesor(Profesor x) {
         System.out.println(x.toString());}
 
-    public static void Stergere_profesor(Vector<Profesor> x, int y) {
+    public void stergereProfesor(Vector<Profesor> x, int y) {
         x.remove(y);
     }
 
-    public static Profesor Modificare_profesor(Profesor x) {
+    public Profesor modificareProfesor(Profesor x) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Modifica CNPul persoanei in:");
         String CNP = scanner.nextLine();
@@ -239,11 +238,11 @@ public class Servicii {
         x.setGrad(grad);
         System.out.println("Modifica anii de experienta persoanei in:");
         int ani = scanner.nextInt();
-        x.setAni_experienta(ani);
+        x.setAniExperienta(ani);
         return x;
     }
 
-    public static Sala Adaugare_sala() {
+    public Sala adaugareSala() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Adauga numele salii: ");
         String sala_nume = scanner.nextLine();
@@ -252,7 +251,7 @@ public class Servicii {
         Vector<Profesor> lista_prof = new Vector<Profesor>();
         System.out.println("Adauga profesorii ce lucreaza in sala respectiva: ");
         for (int i = 1; i <= nr_profi; i++)
-            lista_prof.add(Adaugare_profesor());
+            lista_prof.add(adaugareProfesor());
         System.out.println("De cate materiale dispune sala? ");
         int nr_echip = scanner.nextInt();
         Vector<String> lista_mat = new Vector<String>();
@@ -263,26 +262,26 @@ public class Servicii {
         return sala;
     }
 
-    public static void Afisare_sala(Sala x) {
+    public void afisareSala(Sala x) {
         System.out.println(x.toString());
     }
 
-    public static void Stergere_sala(Vector<Sala> x, int y) {
+    public void stergereSala(Vector<Sala> x, int y) {
         x.remove(y);
     }
 
-    public static Sala Modificare_sala(Sala x) {
+    public Sala modificareSala(Sala x) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Modifica numele salii: ");
         String sala_nume = scanner.nextLine();
-        x.setNume_sala(sala_nume);
+        x.setNumeSala(sala_nume);
         System.out.println("Cati profesori lucreaza in sala respectiva? ");
         int nr_profi = scanner.nextInt();
         Vector<Profesor> lista_prof = new Vector<Profesor>();
         System.out.println("Modifica profesorii ce lucreaza in sala respectiva: ");
         for (int i = 1; i <= nr_profi; i++)
-            lista_prof.add(Adaugare_profesor());
-        x.setLista_profesori(lista_prof);
+            lista_prof.add(adaugareProfesor());
+        x.setListaProfesori(lista_prof);
         System.out.println("De cate materiale dispune sala? ");
         int nr_echip = scanner.nextInt();
         Vector<String> lista_mat = new Vector<String>();
@@ -293,9 +292,9 @@ public class Servicii {
         return x;
     }
 
-    public static Scoala Adaugare_scoala() {
+    public Scoala adaugareScoala() {
         Scanner scanner = new Scanner(System.in);
-        Locatie loc = Adaugare_locatie();
+        Locatie loc = adaugareLocatie();
         System.out.println("Adauga numele scolii: ");
         String scoala_nume = scanner.nextLine();
         System.out.println("Adauga numarul de locuri disponibile ale scolii");
@@ -307,68 +306,69 @@ public class Servicii {
         Vector<Domeniu> lista_domeniu = new Vector<Domeniu>();
         System.out.println("Adauga domeniile care sunt: ");
         for (int i = 1; i <= nr_domenii; i++)
-            lista_domeniu.add(Adaugare_domeniu());
+            lista_domeniu.add(adaugareDomeniu());
         System.out.println("De cate sali dispune scoala? ");
         int nr_sali = scanner.nextInt();
-        Vector<Sala> lista_sali = new Vector<Sala>();
+        Vector<Sala> ListaSali = new Vector<Sala>();
         System.out.println("Adauga salile din scoala respectiva: ");
         for (int i = 1; i <= nr_sali; i++)
-            lista_sali.add(Adaugare_sala());
+            ListaSali.add(adaugareSala());
         System.out.println("Cate persoane fac parte din scoala? ");
         int nr_pers = scanner.nextInt();
-        Vector<Persoana> lista_pers = new Vector<Persoana>();
+        HashMap<String,Persoana> lista_pers = new HashMap<String,Persoana>();
         System.out.println("Adauga persoanele ce fac parte din scoala");
-        for (int i = 1; i <= nr_pers; i++)
-            lista_pers.add(Adaugare_persona());
-        Scoala scoala = new Scoala(loc.getTara(), loc.getJudet(), loc.getLocalitate(), loc.getStrada(), loc.getNumar(), scoala_nume, nr_loc, lista_domeniu, admitere, lista_pers, lista_sali);
+        for (int i = 1; i <= nr_pers; i++) {
+            lista_pers.put(adaugarePersoana().getNume(), adaugarePersoana());
+        }
+        Scoala scoala = new Scoala(loc.getTara(), loc.getJudet(), loc.getLocalitate(), loc.getStrada(), loc.getNumar(), scoala_nume, nr_loc, lista_domeniu, admitere, lista_pers, ListaSali);
         return scoala;
     }
 
-    public static void Afisare_scoala(Scoala x) {
+    public void afisareScoala(Scoala x) {
         System.out.println(x.toString());
     }
 
-    public static void Stergere_scoala(Vector<Scoala> x, int y) {
+    public void stergereScoala(Vector<Scoala> x, int y) {
         x.remove(y);
     }
 
-    public static Scoala Modificare_scoala(Scoala x) {
+    public Scoala modificareScoala(Scoala x) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Modifica numele scolii: ");
         String scoala_nume = scanner.nextLine();
-        x.setNume_scoala(scoala_nume);
+        x.setNumeScoala(scoala_nume);
         System.out.println("Modifica numarul de locuri disponibile ale scolii");
         int nr_loc = scanner.nextInt();
-        x.setNr_locuri(nr_loc);
+        x.setNrLocuri(nr_loc);
         System.out.println("Ce tip de admitere are scoala? (Examen / Dosar / Interviu)");
         String admitere = scanner.nextLine();
-        x.setTip_admitere(admitere);
+        x.setTipAdmitere(admitere);
         System.out.println("Cate domenii are scoala? ");
         int nr_domenii = scanner.nextInt();
         Vector<Domeniu> lista_domeniu = new Vector<Domeniu>();
         System.out.println("Modifica domeniile care sunt: ");
         for (int i = 1; i <= nr_domenii; i++)
-            lista_domeniu.add(Adaugare_domeniu());
-        x.setLista_domenii(lista_domeniu);
+            lista_domeniu.add(adaugareDomeniu());
+        x.setListaDomenii(lista_domeniu);
         System.out.println("De cate sali dispune scoala? ");
         int nr_sali = scanner.nextInt();
-        Vector<Sala> lista_sali = new Vector<Sala>();
+        Vector<Sala> ListaSali = new Vector<Sala>();
         System.out.println("Modifica salile din scoala respectiva: ");
         for (int i = 1; i <= nr_sali; i++)
-            lista_sali.add(Adaugare_sala());
-        x.setLista_sali(lista_sali);
+            ListaSali.add(adaugareSala());
+        x.setListaSali(ListaSali);
         System.out.println("Cate persoane fac parte din scoala? ");
         int nr_pers = scanner.nextInt();
-        Vector<Persoana> lista_pers = new Vector<Persoana>();
+        HashMap<String,Persoana> lista_pers = new HashMap<String,Persoana>();
         for (int i = 1; i <= nr_pers; i++)
-            lista_pers.add(Adaugare_persona());
-        x.setLista_persoane(lista_pers);
+            lista_pers.put(adaugarePersoana().getNume(), adaugarePersoana());
+        x.setListaPersoane(lista_pers);
         return x;
     }
 
-    public static Student Adaugare_student() {
+    public Student adaugareStudent() {
         Scanner scanner = new Scanner(System.in);
-        Persoana pers = Adaugare_persona();
+        Persoana pers = adaugarePersoana();
         System.out.println("Adauga numarul matricol al studentului: ");
         String matricol = scanner.nextLine();
         System.out.println("Adauga in ce an se afla plesoana: ");
@@ -378,24 +378,24 @@ public class Servicii {
         Vector<Disciplina> lista_disc = new Vector<Disciplina>();
         System.out.println("Adauga disciplinele la care este inscris: ");
         for (int i = 1; i <= nr_disc; i++)
-            lista_disc.add(Adaugare_disciplina());
+            lista_disc.add(adaugareDisciplina());
         Student stud = new Student(pers.getCnp(), pers.getNume(), pers.getPrenume(), pers.getVarsta(), matricol, an, lista_disc);
         return stud;
     }
 
-    public static void Afisare_student(Student x) {
+    public void afisareStudent(Student x) {
         System.out.println(x.toString());
     }
 
-    public static void Stergere_student(Vector<Student> x, int y) {
+    public  void stergereStudent(Vector<Student> x, int y) {
         x.remove(y);
     }
 
-    public static Student Modificare_student(Student x) {
+    public  Student modificareStudent(Student x) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Modifica numarul matricol al studentului: ");
         String matricol = scanner.nextLine();
-        x.setNr_matricol(matricol);
+        x.setNrMatricol(matricol);
         System.out.println("Modifica in ce an se afla plesoana: ");
         int an = scanner.nextInt();
         x.setAn(an);
@@ -404,12 +404,12 @@ public class Servicii {
         Vector<Disciplina> lista_disc = new Vector<Disciplina>();
         System.out.println("Modifica disciplinele la care este inscris: ");
         for (int i = 1; i <= nr_disc; i++)
-            lista_disc.add(Adaugare_disciplina());
-        x.setLista_discipline(lista_disc);
+            lista_disc.add(adaugareDisciplina());
+        x.setListaDiscipline(lista_disc);
         return x;
     }
 
-    public static void Cautare_scoala(Vector<Scoala> x) {
+    public  void cautareScoala(Vector<Scoala> x) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Alege tara dupa care vrei sa filtrezi cautarea: ");
         String tara = scanner.nextLine();
@@ -438,12 +438,12 @@ public class Servicii {
                                     String strada = scanner.nextLine();
                                     for (Scoala it : x) {
                                         if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()) & judet.equals(it.getJudet()))
-                                            Afisare_scoala(it);
+                                            afisareScoala(it);
                                     }
                                 } else {
                                     for (Scoala it : x) {
                                         if (tara.equals(it.getTara()) & judet.equals(it.getJudet()) & localitate.equals(it.getLocalitate()))
-                                            Afisare_scoala(it);
+                                            afisareScoala(it);
                                     }
                                 }
                                 break;
@@ -458,12 +458,12 @@ public class Servicii {
                                     String localitate = scanner.nextLine();
                                     for (Scoala it : x) {
                                         if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()) & judet.equals(it.getJudet()))
-                                            Afisare_scoala(it);
+                                            afisareScoala(it);
                                     }
                                 } else {
                                     for (Scoala it : x) {
                                         if (tara.equals(it.getTara()) & judet.equals(it.getJudet()) & strada.equals(it.getStrada()))
-                                            Afisare_scoala(it);
+                                            afisareScoala(it);
                                     }
                                 }
                                 break;
@@ -475,7 +475,7 @@ public class Servicii {
                     } else {
                         for (Scoala it : x) {
                             if (tara.equals(it.getTara()) & judet.equals(it.getJudet()))
-                                Afisare_scoala(it);
+                                afisareScoala(it);
                         }
                     }
                     break;
@@ -499,12 +499,12 @@ public class Servicii {
                                     String strada = scanner.nextLine();
                                     for (Scoala it : x) {
                                         if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()) & judet.equals(it.getJudet()))
-                                            Afisare_scoala(it);
+                                            afisareScoala(it);
                                     }
                                 } else {
                                     for (Scoala it : x) {
                                         if (tara.equals(it.getTara()) & localitate.equals(it.getLocalitate()) & judet.equals(it.getStrada()))
-                                            Afisare_scoala(it);
+                                            afisareScoala(it);
                                     }
                                 }
                                 break;
@@ -519,12 +519,12 @@ public class Servicii {
                                     String judet = scanner.nextLine();
                                     for (Scoala it : x) {
                                         if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()) & judet.equals(it.getJudet()))
-                                            Afisare_scoala(it);
+                                            afisareScoala(it);
                                     }
                                 } else {
                                     for (Scoala it : x) {
                                         if (tara.equals(it.getTara()) & localitate.equals(it.getLocalitate()) & strada.equals(it.getStrada()))
-                                            Afisare_scoala(it);
+                                            afisareScoala(it);
                                     }
                                 }
                                 break;
@@ -536,7 +536,7 @@ public class Servicii {
                     } else {
                         for (Scoala it : x) {
                             if (tara.equals(it.getTara()) & localitate.equals(it.getLocalitate()))
-                                Afisare_scoala(it);
+                                afisareScoala(it);
                         }
                     }
                     break;
@@ -560,12 +560,12 @@ public class Servicii {
                                     String localitate = scanner.nextLine();
                                     for (Scoala it : x) {
                                         if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()) & judet.equals(it.getJudet()))
-                                            Afisare_scoala(it);
+                                            afisareScoala(it);
                                     }
                                 } else {
                                     for (Scoala it : x) {
                                         if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & judet.equals(it.getJudet()))
-                                            Afisare_scoala(it);
+                                            afisareScoala(it);
                                     }
                                 }
                                 break;
@@ -580,12 +580,12 @@ public class Servicii {
                                     String judet = scanner.nextLine();
                                     for (Scoala it : x) {
                                         if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()) & judet.equals(it.getJudet()))
-                                            Afisare_scoala(it);
+                                            afisareScoala(it);
                                     }
                                 } else {
                                     for (Scoala it : x) {
                                         if (tara.equals(it.getTara()) & strada.equals(it.getStrada()) & localitate.equals(it.getLocalitate()))
-                                            Afisare_scoala(it);
+                                            afisareScoala(it);
                                     }
                                 }
                                 break;
@@ -597,7 +597,7 @@ public class Servicii {
                     } else {
                         for (Scoala it : x) {
                             if (tara.equals(it.getTara()) & strada.equals(it.getStrada()))
-                                Afisare_scoala(it);
+                                afisareScoala(it);
                         }
                     }
                     break;
@@ -609,23 +609,23 @@ public class Servicii {
         } else {
             for (Scoala it : x) {
                 if (tara.equals(it.getTara()))
-                    Afisare_scoala(it);
+                    afisareScoala(it);
             }
         }
     }
 
-    public static void Cautare_specializare(Vector<Scoala> x) {
+    public  void cautareSpecializare(Vector<Scoala> x) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("In cadrul a catei scoli doresti sa ii aflii domeniile disponibile: ");
         int nr_scoala = scanner.nextInt();
         int index = 1;
         for (Scoala it : x) {
             if (index == nr_scoala)
-                System.out.println("Disciplinele scolii: " + it.getNume_scoala() + " sunt " + it.getLista_domenii());
+                System.out.println("Disciplinele scolii: " + it.getNumeScoala() + " sunt " + it.getListaDomenii());
         }
     }
 
-    public static Float Calcul_medie(Disciplina x) {
+    public  Float calculMedie(Disciplina x) {
         float medie, suma = 0;
         for (Float it : x.getNota()) {
             suma = suma + it;
@@ -634,11 +634,18 @@ public class Servicii {
         return medie;
     }
 
-    public static int Calcul_nr_credite(Disciplina x) {
+    public  int calculNrCredite(Disciplina x) {
         int nr_credite;
-        Float medie_materie = Calcul_medie(x);
-        nr_credite = (int) (x.getNr_credite_max() * medie_materie / 10);
+        Float medie_materie = calculMedie(x);
+        nr_credite = (int) (x.getNrCrediteMax() * medie_materie / 10);
         return nr_credite;
+    }
+
+    public Vector<Float> noteSortate(Disciplina x){
+        Vector<Float> NoteSortate;
+        NoteSortate=x.getNota();
+        NoteSortate.sort(Collections.reverseOrder());
+        return NoteSortate;
     }
 
     public void citireFisiere(Vector<Disciplina> a, Vector<Domeniu> b, Vector<Locatie> c, Vector<Persoana> d) {
@@ -651,10 +658,10 @@ public class Servicii {
                 String data = scanner.nextLine();
                 String[] arg_of_Data = data.split(",");
                 Disciplina disc = new Disciplina();
-                disc.setNume_domeniu(arg_of_Data[0]);
-                disc.setAni_studii(Integer.parseInt(arg_of_Data[1]));
-                disc.setNume_materie(arg_of_Data[2]);
-                disc.setNr_credite_max(Integer.parseInt(arg_of_Data[3]));
+                disc.setNumeDomeniu(arg_of_Data[0]);
+                disc.setAniStudii(Integer.parseInt(arg_of_Data[1]));
+                disc.setNumeMaterie(arg_of_Data[2]);
+                disc.setNrCrediteMax(Integer.parseInt(arg_of_Data[3]));
                 String[] totalitateNote = arg_of_Data[4].split(";");
                 Vector<Float> note = new Vector<Float>();
                 for (int i = 0; i < totalitateNote.length; i++)
@@ -676,8 +683,8 @@ public class Servicii {
                 String data = scanner.nextLine();
                 String[] arg_of_Data = data.split(",");
                 Domeniu dom = new Domeniu();
-                dom.setNume_domeniu(arg_of_Data[0]);
-                dom.setAni_studii(Integer.parseInt(arg_of_Data[1]));
+                dom.setNumeDomeniu(arg_of_Data[0]);
+                dom.setAniStudii(Integer.parseInt(arg_of_Data[1]));
                 b.add(dom);
             }
             scanner.close();
@@ -728,7 +735,7 @@ public class Servicii {
         }
     }
 
-    public static void creareAudit(String actiune, String timestamp) throws IOException{
+    public void creareAudit(String actiune, String timestamp) throws IOException{
 
         FileWriter writer = new FileWriter("src/Services/Date/Audit.csv", true);
         writer.write( "\n"+actiune+" realizata la data de: " + timestamp);

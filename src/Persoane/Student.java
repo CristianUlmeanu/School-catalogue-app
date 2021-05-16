@@ -6,23 +6,23 @@ import java.util.Vector;
 
 public class Student extends Persoana {
 
-    private String nr_matricol;
+    private String NrMatricol;
     private int an;
-    private Vector<Disciplina> lista_discipline;
+    private Vector<Disciplina> ListaDiscipline;
 
-    public Student(String cnp, String nume, String prenume, int varsta, String nr_matricol, int an, Vector<Disciplina> lista_discipline) {
+    public Student(String cnp, String nume, String prenume, int varsta, String NrMatricol, int an, Vector<Disciplina> ListaDiscipline) {
         super(cnp, nume, prenume, varsta);
-        this.nr_matricol = nr_matricol;
+        this.NrMatricol = NrMatricol;
         this.an = an;
-        this.lista_discipline = lista_discipline;
+        this.ListaDiscipline = ListaDiscipline;
     }
 
-    public String getNr_matricol() {
-        return nr_matricol;
+    public String getNrMatricol() {
+        return NrMatricol;
     }
 
-    public void setNr_matricol(String nr_matricol) {
-        this.nr_matricol = nr_matricol;
+    public void setNrMatricol(String NrMatricol) {
+        this.NrMatricol = NrMatricol;
     }
 
     public int getAn() {
@@ -33,16 +33,16 @@ public class Student extends Persoana {
         this.an = an;
     }
 
-    public Vector<Disciplina> getLista_discipline() {
-        return lista_discipline;
+    public Vector<Disciplina> getListaDiscipline() {
+        return ListaDiscipline;
     }
 
-    public void setLista_discipline(Vector<Disciplina> lista_discipline) {
-        this.lista_discipline = lista_discipline;
+    public void setListaDiscipline(Vector<Disciplina> ListaDiscipline) {
+        this.ListaDiscipline = ListaDiscipline;
     }
 
     @Override
     public String toString(){
-        return "CNP: "+cnp+"\n Nume: "+nume+" "+prenume+"   Varsta: "+varsta+"\n Numarul de inmatriculare: "+nr_matricol+"\n An: "+an+"\n Disciplinele la care a participat: "+lista_discipline;
+        return "CNP: "+cnp+"\n Nume: "+nume+" "+prenume+"   Varsta: "+varsta+"\n Numarul de inmatriculare: "+NrMatricol+"\n An: "+an+"\n Disciplinele la care a participat: "+ListaDiscipline;
     }
 }

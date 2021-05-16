@@ -3,77 +3,78 @@ package InstitutiiScolare;
 import InstitutiiScolare.Studii.Domeniu;
 import Persoane.Persoana;
 
+import java.util.HashMap;
 import java.util.Vector;
 
 public class Scoala extends Locatie {
-    protected String nume_scoala;
-    private int nr_locuri;
-    private Vector<Domeniu> lista_domenii;
-    protected String tip_admitere;
-    private Vector<Persoana> lista_persoane;
-    private Vector<Sala> lista_sali;
+    protected String NumeScoala;
+    private int NrLocuri;
+    private Vector<Domeniu> ListaDomenii;
+    protected String TipAdmitere;
+    private HashMap<String,Persoana> ListaPersoane;
+    private Vector<Sala> ListaSali;
 
-    public Scoala(String tara, String judet, String localitate, String strada, String numar, String nume_scoala, int nr_locuri, Vector<Domeniu> lista_domenii, String tip_admitere, Vector<Persoana> lista_persoane, Vector<Sala> lista_sali) {
+    public Scoala(String tara, String judet, String localitate, String strada, String numar, String NumeScoala, int NrLocuri, Vector<Domeniu> ListaDomenii, String TipAdmitere, HashMap<String,Persoana> ListaPersoane, Vector<Sala> ListaSali) {
         super(tara, judet, localitate, strada, numar);
-        this.nume_scoala = nume_scoala;
-        this.nr_locuri = nr_locuri;
-        this.lista_domenii = lista_domenii;
-        this.tip_admitere = tip_admitere;
-        this.lista_persoane = lista_persoane;
-        this.lista_sali = lista_sali;
+        this.NumeScoala = NumeScoala;
+        this.NrLocuri = NrLocuri;
+        this.ListaDomenii = ListaDomenii;
+        this.TipAdmitere = TipAdmitere;
+        this.ListaPersoane = ListaPersoane;
+        this.ListaSali = ListaSali;
     }
 
-    public String getNume_scoala() {
-        return nume_scoala;
+    public String getNumeScoala() {
+        return NumeScoala;
     }
 
-    public void setNume_scoala(String nume_scoala) {
-        this.nume_scoala = nume_scoala;
+    public void setNumeScoala(String NumeScoala) {
+        this.NumeScoala = NumeScoala;
     }
 
-    public int getNr_locuri() {
-        return nr_locuri;
+    public int getNrLocuri() {
+        return NrLocuri;
     }
 
-    public void setNr_locuri(int nr_locuri) {
-        this.nr_locuri = nr_locuri;
+    public void setNrLocuri(int NrLocuri) {
+        this.NrLocuri = NrLocuri;
     }
 
-    public Vector<Domeniu> getLista_domenii() {
-        return lista_domenii;
+    public Vector<Domeniu> getListaDomenii() {
+        return ListaDomenii;
     }
 
-    public void setLista_domenii(Vector<Domeniu> lista_domenii) {
-        this.lista_domenii = lista_domenii;
+    public void setListaDomenii(Vector<Domeniu> ListaDomenii) {
+        this.ListaDomenii = ListaDomenii;
     }
 
-    public String getTip_admitere() {
-        return tip_admitere;
+    public String getTipAdmitere() {
+        return TipAdmitere;
     }
 
-    public void setTip_admitere(String tip_admitere) {
-        this.tip_admitere = tip_admitere;
+    public void setTipAdmitere(String TipAdmitere) {
+        this.TipAdmitere = TipAdmitere;
     }
 
-    public Vector<Persoana> getLista_persoane() {
-        return lista_persoane;
+    public HashMap<String,Persoana> getListaPersoane() {
+        return ListaPersoane;
     }
 
-    public void setLista_persoane(Vector<Persoana> lista_persoane) {
-        this.lista_persoane = lista_persoane;
+    public void setListaPersoane(HashMap<String,Persoana> ListaPersoane) {
+        this.ListaPersoane = ListaPersoane;
     }
 
-    public Vector<Sala> getLista_sali() {
-        return lista_sali;
+    public Vector<Sala> getListaSali() {
+        return ListaSali;
     }
 
-    public void setLista_sali(Vector<Sala> lista_sali) {
-        this.lista_sali = lista_sali;
+    public void setListaSali(Vector<Sala> ListaSali) {
+        this.ListaSali = ListaSali;
     }
 
     @Override
     public String toString(){
-        return "Scoala se afla in urmaotarea locatie: "+super.toString()+"\n Numele scolii este: "+nume_scoala+", are "+nr_locuri+" disponibile."+" Metoda de examinare este: "+tip_admitere+".\nScoala dispune de urmatoarele sali: "+lista_sali+".\nPersoanele din cadrul scolii sunt: "+lista_persoane;
+        return "Scoala se afla in urmaotarea locatie: "+super.toString()+"\n Numele scolii este: "+NumeScoala+", are "+NrLocuri+" disponibile."+" Metoda de examinare este: "+TipAdmitere+".\nScoala dispune de urmatoarele sali: "+ListaSali+".\nPersoanele din cadrul scolii sunt: "+ListaPersoane;
     }
     
 }
