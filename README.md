@@ -30,5 +30,7 @@ The methods will probably suffer changes, I intend to add more methods to the ap
 # Stage 2
 
 Created a Generic Singleton Class, but didn't use it since I didn't find a attribution and a way to use it for the project but I created it as a requirment. 
+
 I've created 4 CSV files with a function to read from it used for the data inputs, the loading of the inputs in the data members is done before starting to go trough the app. 
+
 On top of that I used another 4 CSV files for viewing with a function which writes in it the data members. On top of that I created a CSV file as an audit type of file which monitors the usage of the application.
