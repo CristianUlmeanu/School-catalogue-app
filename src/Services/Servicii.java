@@ -10,11 +10,13 @@ import InstitutiiScolare.Sala;
 import InstitutiiScolare.Scoala;
 import Persoane.Student;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+
 
 public class Servicii {
     public Locatie adaugareLocatie() {
@@ -740,5 +742,61 @@ public class Servicii {
         FileWriter writer = new FileWriter("src/Services/Date/Audit.csv", true);
         writer.write( "\n"+actiune+" realizata la data de: " + timestamp);
         writer.close();
+    }
+
+    public void scriereFisier(Vector<Disciplina> a, Vector<Domeniu> b, Vector<Locatie> c, Vector<Persoana> d) throws IOException {
+        //Scriere pentru disciplina
+        FileWriter afisajPentruDisciplina = new FileWriter("src/Services/Date/AfisajDiscipline.csv");
+        afisajPentruDisciplina.write("Numele Domeniului,Numarul de ani de studii,Numele Materiei,Numarul de credite,Note\n");
+        for(Disciplina it:a) {
+            Vector<Float> aux = it.getNota();
+            afisajPentruDisciplina.write(it.getNumeDomeniu()
+                    + "," + it.getAniStudii()
+                    + "," + it.getNumeMaterie()
+                    + "," + it.getNrCrediteMax()
+                    + ",");
+            for (int i = 0; i < aux.size(); i++) {
+                afisajPentruDisciplina.write(String.valueOf(aux.get(i)));
+                if (i != aux.size() - 1)
+                    afisajPentruDisciplina.write(";");
+            }
+            afisajPentruDisciplina.write("\n");
+        }
+        afisajPentruDisciplina.close();
+
+        //Scriere pentru domeniu
+        FileWriter afisajPentruDomeniu=new FileWriter("src/Services/Date/AfisajDomenii.csv");
+        afisajPentruDomeniu.write("Numele Domeniului,Numarul de ani de studii\n");
+        for(Domeniu it:b) {
+            afisajPentruDomeniu.write(it.getNumeDomeniu()
+                    + "," + it.getAniStudii()
+                    + "\n");
+        }
+            afisajPentruDomeniu.close();
+
+        //Scriere pentru locatie
+        FileWriter afisajPentruLocatie = new FileWriter("src/Services/Date/AfisajLocatii.csv");
+        afisajPentruLocatie.write("Tara,Judet,Localitate,Strada,Numar\n");
+        for(Locatie it:c){
+            afisajPentruLocatie.write( it.getTara()
+                    + "," + it.getJudet()
+                    + "," + it.getLocalitate()
+                    + "," + it.getStrada()
+                    + "," + it.getNumar()
+                    + "\n");
+        }
+        afisajPentruLocatie.close();
+
+        //Scriere pentru persoana
+        FileWriter afisajPentruPersoana=new FileWriter("src/Services/Date/AfisajPersoane.csv");
+        afisajPentruPersoana.write("CNP,Nume,Prenume,Varsta\n");
+        for(Persoana it:d) {
+            afisajPentruPersoana.write(it.getCnp()
+                    + "," + it.getNume()
+                    + "," + it.getPrenume()
+                    + "," + it.getVarsta()
+                    + "\n");
+        }
+        afisajPentruPersoana.close();
     }
 }
