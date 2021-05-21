@@ -30,4 +30,4 @@ The methods will probably suffer changes, I intend to add more methods to the ap
 # Stage 2
 
 I created 4 CSV files to have the inputs saved in there for 4 classes. I've also created an AUDIT CSV file which is monitoring the usage of the app. I created a method which loads  all the data from the CSV files.
-I will implement later the Singletone and also create CSV files for all the classes.
+Started working on the generic singletone, created the class.
