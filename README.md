@@ -34,3 +34,7 @@ Created a Generic Singleton Class, but didn't use it since I didn't find a attri
 I created 4 CSV files with a function to read from it used for the data inputs, the loading of the inputs in the data members is done before starting to go trough the app. 
 
 On top of that I used another 4 CSV files for viewing the data members which is populated by a method which writes in it the data members. On top of that I created a CSV file as an audit type of file which monitors the usage of the application.
+
+# Stage 3
+
+Created matching database for 4 of the classes in MySQL. I've conected the database to the application and created CRUD methods for the application in order to work on the database from the application. I've alsoe created a method which parses the information from the app to the database or from the database to the app.
