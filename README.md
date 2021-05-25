@@ -12,7 +12,7 @@ I will implement the following classes:
 4. Student - extended from Persoana
 5. Profesor - extended from Persoana
 6. Domeniu
-7. Disciplina - extended from persoana
+7. Disciplina - extended from Persoana
 8. Sala
 
 Also implemented auxialliary classes for services(Services), menu(Meniu) and main.
