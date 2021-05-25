@@ -11,11 +11,14 @@ import InstitutiiScolare.Scoala;
 import Persoane.Student;
 
 
+import javax.swing.plaf.nimbus.State;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.*;
 import java.util.*;
+import java.lang.Thread;
 
 
 public class Servicii {
@@ -695,7 +698,7 @@ public class Servicii {
             e.printStackTrace();
         }
         try {
-            File fisierLocatie = new File("src/Services/Date/ListaDiscipline.csv");
+            File fisierLocatie = new File("src/Services/Date/ListaLocatii.csv");
             Scanner scanner = new Scanner(fisierLocatie);
             if (scanner.hasNextLine())
                 scanner.nextLine();
@@ -716,7 +719,7 @@ public class Servicii {
             e.printStackTrace();
         }
         try {
-            File fisierPersoana = new File("src/Services/Date/ListaDiscipline.csv");
+            File fisierPersoana = new File("src/Services/Date/ListaPersoane.csv");
             Scanner scanner = new Scanner(fisierPersoana);
             if (scanner.hasNextLine())
                 scanner.nextLine();
@@ -798,5 +801,400 @@ public class Servicii {
                     + "\n");
         }
         afisajPentruPersoana.close();
+    }
+    public void populareApp(Connection conexiune, Vector<Profesor> a, Vector<Locatie> b, Vector<Persoana> c, Vector<Domeniu> d) throws SQLException, InterruptedException {
+        Scanner scan=new Scanner(System.in);
+        String tip;
+        System.out.println("In ce tabel vrei sa lucrezi?(Profesor/Locatie/Persoana/Domeniu)");
+        tip=scan.nextLine();
+        if(tip.equals("Profesor")) {
+            Vector <Profesor> profAux=new Vector<Profesor>();
+            String comanda="select * from Profesor";
+            Statement stat=conexiune.createStatement();
+            ResultSet result=stat.executeQuery(comanda);
+            while(result.next()){
+                Profesor profNou=new Profesor();
+                profNou.setCnp(result.getString("cnp"));
+                profNou.setNume(result.getString("nume"));
+                profNou.setPrenume(result.getString("prenume"));
+                profNou.setVarsta(result.getInt("varsta"));
+                profNou.setGrad(result.getString("grad"));
+                profNou.setAniExperienta(result.getInt("aniExperienta"));
+                profAux.add(profNou);
+            }
+            a=profAux;
+        }
+        else if(tip.equals("Locatie")){
+            Vector <Locatie> locAux=new Vector<Locatie>();
+            String comanda="select * from Locatie";
+            Statement stat=conexiune.createStatement();
+            ResultSet result=stat.executeQuery(comanda);
+            while(result.next()){
+                Locatie locNou=new Locatie();
+                locNou.setTara(result.getString("tara"));
+                locNou.setJudet(result.getString("judet"));
+                locNou.setLocalitate(result.getString("localitate"));
+                locNou.setStrada(result.getString("strada"));
+                locNou.setNumar(result.getString("numar"));
+                locAux.add(locNou);
+            }
+            b=locAux;
+        }
+        else if(tip.equals("Persoana")){
+            Vector <Persoana> persAux=new Vector<Persoana>();
+            String comanda="select * from Persoana";
+            Statement stat=conexiune.createStatement();
+            ResultSet result=stat.executeQuery(comanda);
+            while(result.next()) {
+                Persoana persNou = new Persoana();
+                persNou.setCnp(result.getString("cnp"));
+                persNou.setNume(result.getString("nume"));
+                persNou.setPrenume(result.getString("prenume"));
+                persNou.setVarsta(result.getInt("varsta"));
+                persAux.add(persNou);
+            }
+            c=persAux;
+        }
+        else if(tip.equals("Domeniu")){
+            Vector <Domeniu> domAux=new Vector<Domeniu>();
+            String comanda="select * from Domeniu";
+            Statement stat=conexiune.createStatement();
+            ResultSet result=stat.executeQuery(comanda);
+            while(result.next()) {
+                Domeniu domNou = new Domeniu();
+                domNou.setNumeDomeniu(result.getString("NumeDomeniu"));
+                domNou.setAniStudii(result.getInt("AniStudii"));
+                domAux.add(domNou);
+            }
+            d=domAux;
+        }
+        else {
+            System.out.println("Nu ati ales un tabel disponibil!");
+            Thread.sleep(2000);
+            System.out.println("_________________________________________");
+            populareApp(conexiune, a, b, c, d);
+        }
+    }
+    public void populareBD(Connection conexiune, Vector<Profesor> a, Vector<Locatie> b, Vector<Persoana> c, Vector<Domeniu> d) throws InterruptedException, SQLException {
+        Scanner scan=new Scanner(System.in);
+        String tip;
+        System.out.println("In ce tabel vrei sa lucrezi?(Profesor/Locatie/Persoana/Domeniu)");
+        tip=scan.nextLine();
+        if(tip.equals("Profesor")) {
+            System.out.println("Ce profesor doresti sa adaugi in baza de date?");
+            Integer indexProf=scan.nextInt();
+            String comanda="INSERT INTO Profesor values (?,?,?,?,?,?)";
+            PreparedStatement stat=conexiune.prepareStatement(comanda);
+            stat.setString(1,a.get(indexProf).getCnp());
+            stat.setString(2,a.get(indexProf).getNume());
+            stat.setString(3,a.get(indexProf).getPrenume());
+            stat.setInt(4,a.get(indexProf).getVarsta());
+            stat.setString(5,a.get(indexProf).getGrad());
+            stat.setInt(6,a.get(indexProf).getAniExperienta());
+            stat.executeUpdate();
+        }
+        else if(tip.equals("Locatie")){
+            System.out.println("Ce locatie doresti sa adaugi in baza de date?");
+            Integer indexLoc=scan.nextInt();
+            String comanda="INSERT INTO Locatie(tara,judet,localitate,strada,numar) values (?,?,?,?,?)";
+            PreparedStatement stat=conexiune.prepareStatement(comanda);
+            stat.setString(1,b.get(indexLoc).getTara());
+            stat.setString(2,b.get(indexLoc).getJudet());
+            stat.setString(3,b.get(indexLoc).getLocalitate());
+            stat.setString(4,b.get(indexLoc).getStrada());
+            stat.setString(5,b.get(indexLoc).getNumar());
+            stat.executeUpdate();
+        }
+        else if(tip.equals("Persoana")){
+            System.out.println("Ce persoana doresti sa adaugi in baza de date?");
+            Integer indexPers=scan.nextInt();
+            String comanda="INSERT INTO Persoana values (?,?,?,?)";
+            PreparedStatement stat=conexiune.prepareStatement(comanda);
+            stat.setString(1,c.get(indexPers).getCnp());
+            stat.setString(2,c.get(indexPers).getNume());
+            stat.setString(3,c.get(indexPers).getPrenume());
+            stat.setInt(4,c.get(indexPers).getVarsta());
+            stat.executeUpdate();
+        }
+        else if(tip.equals("Domeniu")){
+            System.out.println("Ce domeniu doresti sa adaugi in baza de date?");
+            Integer indexDom=scan.nextInt();
+            String comanda="INSERT INTO Domeniu(NumeDomeniu,AniStudii) values (?,?)";
+            PreparedStatement stat=conexiune.prepareStatement(comanda);
+            stat.setString(1,d.get(indexDom).getNumeDomeniu());
+            stat.setInt(2,d.get(indexDom).getAniStudii());
+            stat.executeUpdate();
+        }
+        else {
+            System.out.println("Nu ati ales un tabel disponibil!");
+            Thread.sleep(2000);
+            System.out.println("_________________________________________");
+            populareBD(conexiune, a, b, c, d);
+        }
+    }
+    public void stergereBD(Connection conexiune, Vector<Profesor> a, Vector<Locatie> b, Vector<Persoana> c, Vector<Domeniu> d) throws InterruptedException, SQLException {
+        Scanner scan=new Scanner(System.in);
+        String tip;
+        System.out.println("In ce tabel vrei sa lucrezi?(Profesor/Locatie/Persoana/Domeniu)");
+        tip=scan.nextLine();
+        if(tip.equals("Profesor")) {
+            System.out.println("Acesta este tabelul in care editezi: \n");
+            System.out.println("CNP, Nume, Prenume, Varsta, Grad, Ani de experienta");
+            String comandaAfisare="select * from Profesor";
+            Statement statAfisare=conexiune.createStatement();
+            ResultSet resultAfisare=statAfisare.executeQuery(comandaAfisare);
+            while(resultAfisare.next()){
+                System.out.println(resultAfisare.getString("cnp")+
+                        "; "+resultAfisare.getString("nume")+
+                        "; "+resultAfisare.getString("prenume")+
+                        "; "+resultAfisare.getInt("varsta")+
+                        "; "+resultAfisare.getString("grad")+
+                        "; "+resultAfisare.getInt("aniExperienta"));
+            }
+            System.out.println("\nCare este conditia pe care vrei sa o aplici pentru a sterge? (Este necesar conditie de MySQL scrisa ca si cod");
+            String cond=scan.nextLine();
+            String comanda="DELETE FROM Profesor where "+cond+";";
+            System.out.println(comanda);
+            Statement stat=conexiune.createStatement();
+            stat.executeUpdate(comanda);
+
+        }
+        else if(tip.equals("Locatie")){
+            System.out.println("Acesta este tabelul in care editezi: \n");
+            System.out.println("ID, Tara, Judet, Localitate, Strada, Numar");
+            String comandaAfisare="select * from Locatie";
+            Statement statAfisare=conexiune.createStatement();
+            ResultSet resultAfisare=statAfisare.executeQuery(comandaAfisare);
+            while(resultAfisare.next()){
+                System.out.println(resultAfisare.getInt("id")+
+                        "; "+resultAfisare.getString("tara")+
+                        "; "+resultAfisare.getString("judet")+
+                        "; "+resultAfisare.getString("localitate")+
+                        "; "+resultAfisare.getString("strada")+
+                        "; "+resultAfisare.getString("numar"));
+            }
+            System.out.println("\nCare este conditia pe care vrei sa o aplici pentru a sterge? (Este necesar conditie de MySQL scrisa ca si cod");
+            String cond=scan.nextLine();
+            String comanda="DELETE FROM Locatie where "+cond+";";
+            System.out.println(comanda);
+            Statement stat=conexiune.createStatement();
+            stat.executeUpdate(comanda);
+        }
+        else if(tip.equals("Persoana")){
+            System.out.println("Acesta este tabelul in care editezi: \n");
+            System.out.println("CNP, Nume, Prenume, Varsta");
+            String comandaAfisare="select * from Persoana";
+            Statement statAfisare=conexiune.createStatement();
+            ResultSet resultAfisare=statAfisare.executeQuery(comandaAfisare);
+            while(resultAfisare.next()){
+                System.out.println(resultAfisare.getString("cnp")+
+                        "; "+resultAfisare.getString("nume")+
+                        "; "+resultAfisare.getString("prenume")+
+                        "; "+resultAfisare.getInt("varsta"));
+            }
+            System.out.println("\nCare este conditia pe care vrei sa o aplici pentru a sterge? (Este necesar conditie de MySQL scrisa ca si cod");
+            String cond=scan.nextLine();
+            String comanda="DELETE FROM Persoana where "+cond+";";
+            System.out.println(comanda);
+            Statement stat=conexiune.createStatement();
+            stat.executeUpdate(comanda);
+        }
+        else if(tip.equals("Domeniu")){
+            System.out.println("Acesta este tabelul in care editezi: \n");
+            System.out.println("ID, Nume Domeniu, Anii de studiu");
+            String comandaAfisare="select * from Domeniu";
+            Statement statAfisare=conexiune.createStatement();
+            ResultSet resultAfisare=statAfisare.executeQuery(comandaAfisare);
+            while(resultAfisare.next()){
+                System.out.println(resultAfisare.getString("id")+
+                        "; "+resultAfisare.getString("NumeDomeniu")+
+                        "; "+resultAfisare.getString("AniStudii"));
+            }
+            System.out.println("\nCare este conditia pe care vrei sa o aplici pentru a sterge? (Este necesar conditie de MySQL scrisa ca si cod");
+            String cond=scan.nextLine();
+            String comanda="DELETE FROM Domeniu where "+cond+";";
+            System.out.println(comanda);
+            Statement stat=conexiune.createStatement();
+            stat.executeUpdate(comanda);
+        }
+        else {
+            System.out.println("Nu ati ales un tabel disponibil!");
+            Thread.sleep(2000);
+            System.out.println("_________________________________________");
+            stergereBD(conexiune, a, b, c, d);
+        }
+    }
+    public void modificareBdApp(Connection conexiune, Vector<Profesor> a, Vector<Locatie> b, Vector<Persoana> c, Vector<Domeniu> d) throws InterruptedException, SQLException {
+        Scanner scan=new Scanner(System.in);
+        String tip;
+        System.out.println("In ce tabel vrei sa lucrezi?(Profesor/Locatie/Persoana/Domeniu)");
+        tip=scan.nextLine();
+        if(tip.equals("Profesor")) {
+            System.out.println("Acesta este tabelul in care editezi in functie de identificatorul primar: \n");
+            System.out.println("CNP, Nume, Prenume, Varsta, Grad, Ani de experienta");
+            String comandaAfisare="select * from Profesor";
+            Statement statAfisare=conexiune.createStatement();
+            ResultSet resultAfisare=statAfisare.executeQuery(comandaAfisare);
+            while(resultAfisare.next()){
+                System.out.println(resultAfisare.getString("cnp")+
+                        "; "+resultAfisare.getString("nume")+
+                        "; "+resultAfisare.getString("prenume")+
+                        "; "+resultAfisare.getInt("varsta")+
+                        "; "+resultAfisare.getString("grad")+
+                        "; "+resultAfisare.getInt("aniExperienta"));
+            }
+            System.out.println("\nCNPul carui profesor doresti sa editezi?");
+            String cond=scan.nextLine();
+            System.out.println("Introdu datele in ce le modifici");
+            System.out.println("CNP:");
+            String cnp=scan.next();
+            System.out.println("Nume:");
+            String nume=scan.nextLine();
+            System.out.println("Prenume:");
+            String prenume= scan.nextLine();
+            System.out.println("Varsta:");
+            Integer varsta=scan.nextInt();
+            System.out.println("Grad:");
+            String grad= scan.nextLine();
+            System.out.println("Anii de experienta:");
+            Integer ani= scan.nextInt();
+            String comanda="UPDATE Profesor SET cnp=?, nume=?, prenume=?, varsta=?, grad=?, aniExperienta=? where cnp=?;";
+            PreparedStatement stat=conexiune.prepareStatement(comanda);
+            stat.setString(1,cnp);
+            stat.setString(2,nume);
+            stat.setString(3,prenume);
+            stat.setInt(4,varsta);
+            stat.setString(5,grad);
+            stat.setInt(6,ani);
+            stat.setString(7,cond);
+            stat.executeUpdate();
+            for(Profesor it:a){
+                if(it.getCnp().equals(cond)){
+                    it.setCnp(cnp);
+                    it.setNume(nume);
+                    it.setPrenume(prenume);
+                    it.setVarsta(varsta);
+                    it.setGrad(grad);
+                    it.setAniExperienta(ani);
+                }
+            }
+        }
+        else if(tip.equals("Locatie")){
+            System.out.println("Acesta este tabelul in care editezi in functie de identificatorul primar: \n");
+            System.out.println("ID, Tara, Judet, Localitate, Strada, Numar");
+            String comandaAfisare="select * from Locatie";
+            Statement statAfisare=conexiune.createStatement();
+            ResultSet resultAfisare=statAfisare.executeQuery(comandaAfisare);
+            while(resultAfisare.next()){
+                System.out.println(resultAfisare.getInt("id")+
+                        "; "+resultAfisare.getString("tara")+
+                        "; "+resultAfisare.getString("judet")+
+                        "; "+resultAfisare.getString("localitate")+
+                        "; "+resultAfisare.getString("strada")+
+                        "; "+resultAfisare.getString("numar"));
+            }
+            System.out.println("\nIDul carei locatii doresti sa editezi?");
+            Integer cond=scan.nextInt();
+            System.out.println("Introdu datele in ce le modifici");
+            System.out.println("Tara:");
+            String tara=scan.next();
+            System.out.println("Judet:");
+            String judet=scan.nextLine();
+            System.out.println("Localitate:");
+            String localitate= scan.nextLine();
+            System.out.println("Strada:");
+            String strada=scan.nextLine();
+            System.out.println("Numar:");
+            String numar= scan.nextLine();
+            String comanda="UPDATE Locatie SET id=?, tara=?, judet=?, localitate=?, strada=?, numar=? where id=?;";
+            PreparedStatement stat=conexiune.prepareStatement(comanda);
+            stat.setInt(1,cond);
+            stat.setString(2,tara);
+            stat.setString(3,judet);
+            stat.setString(4,localitate);
+            stat.setString(5,strada);
+            stat.setString(6,numar);
+            stat.setInt(7,cond);
+            stat.executeUpdate();
+            b.get(cond).setTara(tara);
+            b.get(cond).setJudet(judet);
+            b.get(cond).setLocalitate(localitate);
+            b.get(cond).setStrada(strada);
+            b.get(cond).setNumar(numar);
+        }
+        else if(tip.equals("Persoana")){
+            System.out.println("Acesta este tabelul in care editezi in functie de identificatorul primar: \n");
+            System.out.println("CNP, Nume, Prenume, Varsta");
+            String comandaAfisare="select * from Persoana";
+            Statement statAfisare=conexiune.createStatement();
+            ResultSet resultAfisare=statAfisare.executeQuery(comandaAfisare);
+            while(resultAfisare.next()){
+                System.out.println(resultAfisare.getString("cnp")+
+                        "; "+resultAfisare.getString("nume")+
+                        "; "+resultAfisare.getString("prenume")+
+                        "; "+resultAfisare.getInt("varsta"));
+            }
+            System.out.println("\nCNPul carei persoane doresti sa editezi?");
+            String cond=scan.nextLine();
+            System.out.println("Introdu datele in ce le modifici");
+            System.out.println("CNP:");
+            String cnp=scan.next();
+            System.out.println("Nume:");
+            String nume=scan.nextLine();
+            System.out.println("Prenume:");
+            String prenume= scan.nextLine();
+            System.out.println("Varsta:");
+            Integer varsta=scan.nextInt();
+            String comanda="UPDATE Persoana SET cnp=?, nume=?, prenume=?, varsta=? where cnp=?;";
+            PreparedStatement stat=conexiune.prepareStatement(comanda);
+            stat.setString(1,cnp);
+            stat.setString(2,nume);
+            stat.setString(3,prenume);
+            stat.setInt(4,varsta);
+            stat.setString(5,cond);
+            stat.executeUpdate();
+            for(Persoana it:c){
+                if(it.getCnp().equals(cond)){
+                    it.setCnp(cnp);
+                    it.setNume(nume);
+                    it.setPrenume(prenume);
+                    it.setVarsta(varsta);
+                }
+            }
+        }
+        else if(tip.equals("Domeniu")){
+            System.out.println("Acesta este tabelul in care editezi in functie de identificatorul primar: \n");
+            System.out.println("ID, Numele domeniului, Anii de studiu");
+            String comandaAfisare="select * from Domeniu";
+            Statement statAfisare=conexiune.createStatement();
+            ResultSet resultAfisare=statAfisare.executeQuery(comandaAfisare);
+            while(resultAfisare.next()){
+                System.out.println(resultAfisare.getInt("id")+
+                        "; "+resultAfisare.getString("NumeDomeniu")+
+                        "; "+resultAfisare.getString("AniStudii"));
+            }
+            System.out.println("\nIDul carui domeniu doresti sa editezi?");
+            Integer cond=scan.nextInt();
+            System.out.println("Introdu datele in ce le modifici");
+            System.out.println("Numele domeniului:");
+            String nume=scan.next();
+            System.out.println("Anii de studiu:");
+            Integer ani=scan.nextInt();
+            String comanda="UPDATE Domeniu SET id=?, NumeDomeniu=?, AniStudii=? where id=?";
+            PreparedStatement stat=conexiune.prepareStatement(comanda);
+            stat.setInt(1,cond);
+            stat.setString(2,nume);
+            stat.setInt(3,ani);
+            stat.setInt(4,cond);
+            stat.executeUpdate();
+            d.get(cond-1).setNumeDomeniu(nume);
+            d.get(cond-1).setAniStudii(ani);
+        }
+        else {
+            System.out.println("Nu ati ales un tabel disponibil!");
+            Thread.sleep(2000);
+            System.out.println("_________________________________________");
+            modificareBdApp(conexiune, a, b, c, d);
+        }
     }
 }

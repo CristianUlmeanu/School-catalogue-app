@@ -10,6 +10,9 @@ public class Profesor extends Persoana {
         this.AniExperienta = AniExperienta;
     }
 
+    public Profesor() {
+    }
+
     public String getGrad() {
         return grad;
     }

@@ -3,14 +3,14 @@ package Services;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Singleton{
+public class SingletonGeneric {
 
-    private static final Singleton instance = new Singleton();
+    private static final SingletonGeneric instance = new SingletonGeneric();
 
     @SuppressWarnings( "rawtypes")
     private Map<Class,Object> mapHolder = new HashMap<Class,Object>();
 
-    private Singleton() {}
+    private SingletonGeneric() {}
 
 
     @SuppressWarnings("unchecked")

@@ -10,12 +10,13 @@ import InstitutiiScolare.Scoala;
 import Persoane.Student;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.Vector;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException, InterruptedException {
         Scanner scanner=new Scanner(System.in);
         Vector<Disciplina> discipline=new Vector<Disciplina>();
         Vector<Domeniu> domenii=new Vector<Domeniu>();
@@ -26,8 +27,6 @@ public class Main {
         Vector<Locatie> lista_locatii = new Vector<Locatie>();
         Vector<Student> studenti=new Vector<Student>();
         Servicii serv=new Servicii();
-        serv.citireFisiere(discipline,domenii,lista_locatii,persoane);
-        serv.scriereFisier(discipline,domenii,lista_locatii,persoane);
         Meniu meniu=new Meniu();
         meniu.meniu(discipline,domenii,lista_locatii,persoane,profesor,sali,scoli,studenti);
     }
