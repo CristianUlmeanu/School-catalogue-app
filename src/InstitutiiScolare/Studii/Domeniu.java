@@ -1,12 +1,12 @@
 package InstitutiiScolare.Studii;
 
 public class Domeniu {
-    protected String NumeDomeniu;
-    protected int AniStudii;
+    protected String numeDomeniu;
+    protected int aniStudii;
 
     public Domeniu(String NumeDomeniu, int AniStudii) {
-        this.NumeDomeniu = NumeDomeniu;
-        this.AniStudii = AniStudii;
+        this.numeDomeniu = NumeDomeniu;
+        this.aniStudii = AniStudii;
     }
 
     public Domeniu() {
@@ -14,24 +14,24 @@ public class Domeniu {
     }
 
     public String getNumeDomeniu() {
-        return NumeDomeniu;
+        return numeDomeniu;
     }
 
     public void setNumeDomeniu(String NumeDomeniu) {
-        this.NumeDomeniu = NumeDomeniu;
+        this.numeDomeniu = NumeDomeniu;
     }
 
     public int getAniStudii() {
-        return AniStudii;
+        return aniStudii;
     }
 
     public void setAniStudii(int AniStudii) {
-        this.AniStudii = AniStudii;
+        this.aniStudii = AniStudii;
     }
 
     @Override
     public String toString(){
-        return "Nume domeniu: "+NumeDomeniu+"\n Numar de ani pentru a completa domeniul: "+AniStudii;
+        return "Nume domeniu: "+ numeDomeniu +"\n Numar de ani pentru a completa domeniul: "+ aniStudii;
     }
 
 }

@@ -6,30 +6,30 @@ import java.util.List;
 import java.util.Vector;
 
 public class Sala {
-    private String NumeSala;
-    private Vector<Profesor> ListaProfesori;
+    private String numeSala;
+    private Vector<Profesor> listaProfesori;
     private Vector<String> materiale;
 
     public Sala(String NumeSala, Vector<Profesor> ListaProfesori, Vector<String> materiale) {
-        this.NumeSala = NumeSala;
-        this.ListaProfesori = ListaProfesori;
+        this.numeSala = NumeSala;
+        this.listaProfesori = ListaProfesori;
         this.materiale = materiale;
     }
 
     public String getNumeSala() {
-        return NumeSala;
+        return numeSala;
     }
 
     public void setNumeSala(String NumeSala) {
-        this.NumeSala = NumeSala;
+        this.numeSala = NumeSala;
     }
 
     public Vector<Profesor> getListaProfesori() {
-        return ListaProfesori;
+        return listaProfesori;
     }
 
     public void setListaProfesori(Vector<Profesor> ListaProfesori) {
-        this.ListaProfesori = ListaProfesori;
+        this.listaProfesori = ListaProfesori;
     }
 
     public List<String> getMateriale() {
@@ -42,6 +42,6 @@ public class Sala {
 
     @Override
     public String toString(){
-        return "Sala: "+NumeSala+"\n Profesori ce predau in aceasta sala: "+ListaProfesori+"\n Materiale de care dispune sala: "+materiale;
+        return "Sala: "+ numeSala +"\n Profesori ce predau in aceasta sala: "+ listaProfesori +"\n Materiale de care dispune sala: "+materiale;
     }
 }
