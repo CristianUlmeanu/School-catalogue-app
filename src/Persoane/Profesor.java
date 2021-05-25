@@ -2,12 +2,12 @@ package Persoane;
 
 public class Profesor extends Persoana {
     private String grad;
-    private int AniExperienta;
+    private int aniExperienta;
 
     public Profesor(String cnp, String nume, String prenume, int varsta, String grad, int AniExperienta) {
         super(cnp, nume, prenume, varsta);
         this.grad = grad;
-        this.AniExperienta = AniExperienta;
+        this.aniExperienta = AniExperienta;
     }
 
     public Profesor() {
@@ -22,15 +22,15 @@ public class Profesor extends Persoana {
     }
 
     public int getAniExperienta() {
-        return AniExperienta;
+        return aniExperienta;
     }
 
     public void setAniExperienta(int AniExperienta) {
-        this.AniExperienta = AniExperienta;
+        this.aniExperienta = AniExperienta;
     }
 
     @Override
     public String toString(){
-        return "CNP: "+cnp+"\n Nume: "+nume+" "+prenume+"   Varsta: "+varsta+"\n Grad: "+grad+"; Ani de experienta:"+AniExperienta;
+        return "CNP: "+cnp+"\n Nume: "+nume+" "+prenume+"   Varsta: "+varsta+"\n Grad: "+grad+"; Ani de experienta:"+ aniExperienta;
     }
 }

@@ -951,10 +951,9 @@ public class Servicii {
                         "; "+resultAfisare.getString("grad")+
                         "; "+resultAfisare.getInt("aniExperienta"));
             }
-            System.out.println("\nCare este conditia pe care vrei sa o aplici pentru a sterge? (Este necesar conditie de MySQL scrisa ca si cod");
+            System.out.println("\nCare este conditia pe care vrei sa o aplici pentru a sterge? (Este necesar conditie de MySQL scrisa ca si cod)");
             String cond=scan.nextLine();
             String comanda="DELETE FROM Profesor where "+cond+";";
-            System.out.println(comanda);
             Statement stat=conexiune.createStatement();
             stat.executeUpdate(comanda);
 
@@ -973,10 +972,9 @@ public class Servicii {
                         "; "+resultAfisare.getString("strada")+
                         "; "+resultAfisare.getString("numar"));
             }
-            System.out.println("\nCare este conditia pe care vrei sa o aplici pentru a sterge? (Este necesar conditie de MySQL scrisa ca si cod");
+            System.out.println("\nCare este conditia pe care vrei sa o aplici pentru a sterge? (Este necesar conditie de MySQL scrisa ca si cod)");
             String cond=scan.nextLine();
             String comanda="DELETE FROM Locatie where "+cond+";";
-            System.out.println(comanda);
             Statement stat=conexiune.createStatement();
             stat.executeUpdate(comanda);
         }
@@ -992,10 +990,9 @@ public class Servicii {
                         "; "+resultAfisare.getString("prenume")+
                         "; "+resultAfisare.getInt("varsta"));
             }
-            System.out.println("\nCare este conditia pe care vrei sa o aplici pentru a sterge? (Este necesar conditie de MySQL scrisa ca si cod");
+            System.out.println("\nCare este conditia pe care vrei sa o aplici pentru a sterge? (Este necesar conditie de MySQL scrisa ca si cod)");
             String cond=scan.nextLine();
             String comanda="DELETE FROM Persoana where "+cond+";";
-            System.out.println(comanda);
             Statement stat=conexiune.createStatement();
             stat.executeUpdate(comanda);
         }
@@ -1010,10 +1007,9 @@ public class Servicii {
                         "; "+resultAfisare.getString("NumeDomeniu")+
                         "; "+resultAfisare.getString("AniStudii"));
             }
-            System.out.println("\nCare este conditia pe care vrei sa o aplici pentru a sterge? (Este necesar conditie de MySQL scrisa ca si cod");
+            System.out.println("\nCare este conditia pe care vrei sa o aplici pentru a sterge? (Este necesar conditie de MySQL scrisa ca si cod)");
             String cond=scan.nextLine();
             String comanda="DELETE FROM Domeniu where "+cond+";";
-            System.out.println(comanda);
             Statement stat=conexiune.createStatement();
             stat.executeUpdate(comanda);
         }

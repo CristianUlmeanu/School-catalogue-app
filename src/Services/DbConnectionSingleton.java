@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 public class DbConnectionSingleton {
     private static Connection con;
+    private DbConnectionSingleton() {};
     private static void Initiere()
     {
         String url = "jdbc:mysql://localhost:3306/sys";
